@@ -1,0 +1,9 @@
+{
+  "generator-derby": {
+    "project": "cows",
+    "apps": [
+      "coca"
+    ],
+    "coffee": false
+  }
+}

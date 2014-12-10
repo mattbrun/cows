@@ -1,4 +1,2 @@
 cows
-====
-
-Comunità Capi WebSite
+=============
