@@ -61,6 +61,9 @@ app.get('mail', appUrl + '/mail');
 
 app.get('registry', appUrl + '/registry');
 
+app.get('accounting', appUrl + '/accounting');
+
+
 
 // #############################################################################
 // Server-only routes

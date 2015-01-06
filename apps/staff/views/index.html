@@ -9,7 +9,7 @@
   <view is="commonDeps:css"></view>
 
 <Body:>
-  <view is="topBar" brand="Vicenza 1" brandUrl="/coca">
+  <view is="topBar" brand="Vicenza 1">
     <view is="topBar:navLink" url="/coca">Co.Ca.</view>
     <view is="topBar:navLink" url="/staff">Staff</view>
     <view is="topBar:navLink" url="/admin">Admin</view>
@@ -19,6 +19,7 @@
     <view is="sideBar">
       <view is="sideBar:navLink" url="{{pathFor('mail')}}">Mail</view>
       <view is="sideBar:navLink" url="{{pathFor('registry')}}">Anagrafe</view>
+      <view is="sideBar:navLink" url="{{pathFor('accounting')}}">Contabilità</view>
     </view>
 
     <div id="page-content-wrapper">

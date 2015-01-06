@@ -61,6 +61,10 @@ app.get('mail', appUrl + '/mail');
 
 app.get('calendar', appUrl + '/calendar');
 
+app.get('places', appUrl + '/places');
+
+app.get('market', appUrl + '/market');
+
 
 
 // #############################################################################
