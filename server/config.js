@@ -26,6 +26,27 @@ var cfgPath = path.join(__dirname, '..', 'config')
 
 
 //###################################################################
+// Functions
+//###################################################################
+
+function toBoolean (s) {
+  return s === "true";
+}
+
+
+
+//###################################################################
+// Parsing
+//###################################################################
+
+config.app.port = parseInt(config.app.port, 10);
+config.app.cleanInterval = parseInt(config.app.cleanInterval, 10);
+config.mongo.port = parseInt(config.mongo.port, 10);
+config.auth.cookieTimeout = parseInt(config.auth.cookieTimeout, 10);
+
+
+
+//###################################################################
 // App logic
 //###################################################################
 
@@ -40,6 +61,7 @@ if (file === 'openshift') {
   config.mongo.password = config.mongo.password || process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
 }
 
+config.mongo.eraseOnStart = toBoolean(config.mongo.eraseOnStart);
 config.mongo.url = 'mongodb://';
 if (config.mongo.username && config.mongo.password) {
   config.mongo.url += config.mongo.username + ':';
@@ -71,5 +93,5 @@ include.forEach(function(fileName) {
 // Exports
 //###################################################################
 
-console.log('### config', config);
+console.log('### config', JSON.stingify(config));
 module.exports = exports = config;
