@@ -13,7 +13,7 @@
           <span class="sr-only">Toggle side bar</span>
           <span id="sidebar-icon" class="glyphicon glyphicon-list"></span>
         </button>
-        <a class="navbar-brand" href="{{@brandUrl}}">
+        <a class="navbar-brand" href="{{if @brandUrl}} {{@brandUrl}} {{else}} / {{/if}}">
           {{@brand}}
         </a>
       </div>
