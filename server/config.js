@@ -17,7 +17,6 @@ var file = 'dev';
 if (process.env.OPENSHIFT_APP_NAME) {
   file = 'openshift';
 }
-console.log('### config file', file);
 
 var cfgPath = path.join(__dirname, '..', 'config')
   , cfgFile = path.join(cfgPath, file + '.json')
@@ -72,4 +71,5 @@ include.forEach(function(fileName) {
 // Exports
 //###################################################################
 
+console.log('### config', config);
 module.exports = exports = config;
