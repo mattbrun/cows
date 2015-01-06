@@ -35,8 +35,9 @@ derby.run(function() {
   // app require list
   var apps = [
     require('./apps/login')
-  //, require('./apps/picua')
   , require('./apps/coca')
+  , require('./apps/staff')
+  , require('./apps/admin')
     // <end of app list> - don't remove this comment
   ];
 

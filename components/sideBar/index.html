@@ -13,5 +13,7 @@
       {{else if @content}}
         {{@content}}
       {{/if}}
+
+      {{if $render.url === @url}}<span class="sr-only">(current)</span>{{/}}
     </a>
   </li>

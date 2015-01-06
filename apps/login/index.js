@@ -16,7 +16,6 @@ var appName = path.basename(__dirname),
     app     = module.exports = derby.createApp(appName, __filename);
 
 if (!derby.util.isProduction) {
-  //global.app = app;
   app.use(require('derby-debug'));
 }
 

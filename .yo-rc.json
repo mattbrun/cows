@@ -3,7 +3,9 @@
     "project": "cows",
     "apps": [
       "login",
-      "coca"
+      "coca",
+      "staff",
+      "admin"
     ],
     "coffee": false
   }

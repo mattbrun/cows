@@ -1,7 +1,4 @@
-<import: src="../sideBar">
-
 <index:>
-
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -16,17 +13,21 @@
           <span class="sr-only">Toggle side bar</span>
           <span id="sidebar-icon" class="glyphicon glyphicon-list"></span>
         </button>
-        <a class="navbar-brand" href="/">
-          {{@content}}
+        <a class="navbar-brand" href="{{@brandUrl}}">
+          {{@brand}}
         </a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          {{@content}}
+        </ul>
+
         <ul class="nav navbar-nav navbar-right">
 
           {{if #root.$connection.state !== 'connected'}}
-            <view is="sideBar:navLink">
+            <view is="navLink">
               <!--<i class="fa fa-exclamation-triangle"></i> &sp;&sp;-->
               {{if #root.$connection.state === 'stopped'}}
                 Unable to reconnect &ndash; <a on-click="reload()">Reload</a>
@@ -39,8 +40,21 @@
             </view>
           {{/if}}
 
-          <view is="sideBar:navLink" url="/auth/logout">Logout</view>
+          <view is="navLink" url="/auth/logout">Logout</view>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
+
+<navLink:>
+  <li>
+    <a class="{{if $render.url === @url}}active{{/}}" href="{{@url}}">
+      {{if @title}}
+        {{@title}}
+      {{else if @content}}
+        {{@content}}
+      {{/if}}
+
+      {{if $render.url === @url}}<span class="sr-only">(current)</span>{{/}}
+    </a>
+  </li>

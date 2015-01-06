@@ -59,8 +59,7 @@ app.get(appUrl, function (page, model, params, next) {
 
 app.get('mail', appUrl + '/mail');
 
-app.get('calendar', appUrl + '/calendar');
-
+app.get('registry', appUrl + '/registry');
 
 
 // #############################################################################

@@ -4,20 +4,15 @@ module.exports = {
 
   collection: 'auths',            // db collection
   publicCollection: 'users',      // projection of db collection
+
+  encryption: 'scryptjs',
+  successUrl: '/coca',
   
   user: {                         // projection
     id: true,
     email: true
   },
-  
-  encryption: 'scryptjs',
-
   confirmRegistration: false,
-
-  passport: {
-    successRedirect: '/',
-    failureRedirect: '/'
-  },
 
   hooks: {
     request: function(req, res, userId, isAuthenticated, done) {

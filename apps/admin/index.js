@@ -54,12 +54,12 @@ app.get('*', function (page, model, params, next)  {
 });
 
 app.get(appUrl, function (page, model, params, next) {
-  this.redirect('mail');
+  this.redirect('dash');
 });
 
-app.get('mail', appUrl + '/mail');
+app.get('dash', appUrl + '/dash');
 
-app.get('calendar', appUrl + '/calendar');
+app.get('users', appUrl + '/users');
 
 
 
