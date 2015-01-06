@@ -1,7 +1,9 @@
+'use strict';
+
 var errorApp = require('../apps/error');
 
-module.exports = function (err, req, res, next) {
-  if (!err) return next();
+module.exports = function(err, req, res, next) {
+  if (!err) { return next(); }
 
   var message = err.message || err.toString();
   var status = parseInt(message);
@@ -15,4 +17,4 @@ module.exports = function (err, req, res, next) {
 
   var page = errorApp.createPage(req, res, next);
   page.renderStatic(status, status.toString());
-}
+};

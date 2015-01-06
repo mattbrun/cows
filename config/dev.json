@@ -1,0 +1,30 @@
+{
+
+  "app" : {
+    "ip"              : "0.0.0.0",
+    "port"            : 3000,
+    
+    "cleanInterval"   : 60000,
+    "eraseOnStart"    : false
+  },
+
+  "mongo" : {
+    "host"            : "127.0.0.1",
+    "port"            : 27017,
+    "db"              : "picua",
+
+    "username"        : null,
+    "password"        : null
+  },
+  
+  "collections": {
+  },
+
+  "auth" : {
+    "suLogin"         : "super@user.net",
+    "suPassword"      : "admin14",
+
+    "cookieTimeout"   : 60000
+  }
+    
+}

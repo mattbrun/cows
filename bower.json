@@ -1,8 +1,12 @@
 {
-  "name": "cows",
-  "version": "0.0.0",
+  "name": "picua",
+  "version": "0.0.1",
   "dependencies": {
-  },
-  "exportsOverride": {
+    "bootstrap": "~3.3.1",
+    "chartjs": "~0.2.0",
+    "fontawesome": "~4.2.0",
+    "selectize": "~0.11.2",
+    "html5shiv": "~3.7.2",
+    "respond": "~1.4.2"
   }
 }

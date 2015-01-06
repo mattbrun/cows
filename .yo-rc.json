@@ -2,6 +2,7 @@
   "generator-derby": {
     "project": "cows",
     "apps": [
+      "login",
       "coca"
     ],
     "coffee": false

@@ -1,0 +1,33 @@
+{
+
+  "app" : {
+    "ip"              : "0.0.0.0",
+    "port"            : 3000,
+    
+    "cleanInterval"   : 60000,
+    "eraseOnStart"    : false,
+    
+    "wsPort"          : 8000,
+    "wsSecurePort"    : 8443
+  },
+
+  "mongo" : {
+    "host": "ds031691.mongolab.com",
+    "port": 31691,
+    "db": "openshift_r5e999a6_miea654h",
+    "username": "cows",
+    "password": "vicenza1"
+
+  },
+
+  "collections": {
+  },
+
+  "auth" : {
+    "suLogin"         : "super@user.net",
+    "suPassword"      : "admin14",
+
+    "cookieTimeout"   : 60000
+  }
+    
+}

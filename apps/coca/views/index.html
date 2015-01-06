@@ -1,0 +1,27 @@
+<import: src="./home">
+
+<Title:>
+  {{_page.title}}
+
+<Head:>
+  <view is="commonDeps:meta"></view>
+  <view is="commonDeps:css"></view>
+  
+<Body:>
+  <view is="topBar">Vicenza 1</view>
+
+  <div id="wrapper" class="content">
+    <view is="sideBar">
+      <view is="sideBar:navLink" url="{{pathFor('home')}}">Home</view>
+    </view>
+
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <view is="{{$render.ns}}"></view>
+      </div>
+    </div>
+  </div>
+
+  <view is="footer" year="2014"></view>
+
+  <view is="commonDeps:js"></view>

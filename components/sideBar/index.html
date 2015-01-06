@@ -1,0 +1,17 @@
+<index:>
+  <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        {{@content}}
+      </ul>
+  </div>
+
+<navLink:>
+  <li>
+    <a class="{{if $render.url === @url}}selected{{/}}" href="{{@url}}">
+      {{if @title}}
+        {{@title}}
+      {{else if @content}}
+        {{@content}}
+      {{/if}}
+    </a>
+  </li>

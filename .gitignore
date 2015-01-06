@@ -1,5 +1,15 @@
-node_modules
-.DS_Store
-*.swp
-.idea*
-/public/derby
+# Cloud9 auto-generated files
+.c9revisions/
+.c9revisions/*
+.settings*
+
+# WebStorm auto-generated files
+.idea/*
+
+# NodeJS files
+node_modules/
+npm-debug.log
+
+# Project files
+bower_components
+public/derby

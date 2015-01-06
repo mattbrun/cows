@@ -1,23 +1,15 @@
-<!--
-<import: src="../../common/views/meta">
-<import: src="../../common/views/css">
-<import: src="../../common/views/js">
--->
-
 <Title:>
   {{_page.title}}
 
 <Head:>
-  <!--
-  <view is="meta:depsCommon"></view>
-  <view is="css:depsCommon"></view>
-  -->
+  <view is="commonDeps:meta"></view>
+  <view is="commonDeps:css"></view>
 
 <Body:>
 
   <div class="container" id="auth-login">
-    <!--<view is="{{$render.ns}}"/>-->
-    <view is="auth:login"/>
+    <img id="logo" src="img/agesci.jpg" class="img-responsive" alt="AGESCI">
+    <view is="auth:login"></view>
   </div>
 
-  <!--<view is="js:depsCommon"></view>-->
+  <view is="commonDeps:js"></view>

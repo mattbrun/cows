@@ -1,49 +1,72 @@
-var async = require('async');
-var derby = require('derby');
+'use strict';
 
-var http  = require('http');
-var chalk = require('chalk');
+// #############################################################################
+// dependencies
+// #############################################################################ù
 
-var publicDir = process.cwd() + '/public';
+// Requires which injects themselves in the global space
+require('logger');
 
-derby.run(function(){
+var path    = require('path')
+  , async   = require('async')
+  , http    = require('http')
+  , config  = require('./server/config');
+
+var derby   = require('derby')
+  , clean   = require('./server/clean')
+  , store   = require('./server/store')
+  , access  = require('./server/access')
+  , hooks   = require('./server/hooks')
+  , express = require('./server/express')
+  , error   = require('./server/error')
+  , chalk   = require('chalk');
+
+var publicDir = path.join(process.cwd(), 'public');
+
+
+
+// #############################################################################
+// start app
+// #############################################################################
+
+derby.run(function() {
   require('coffee-script/register');
 
-  require('./server/config');
-
+  // app require list
   var apps = [
-    require('./apps/login'),
-    require('./apps/coca')
+    require('./apps/login')
+  //, require('./apps/picua')
+  , require('./apps/coca')
     // <end of app list> - don't remove this comment
   ];
 
-  var express = require('./server/express');
-  var store = require('./server/store')(derby, publicDir);
+  // clean junk data from last execute
+  clean();
 
-  var error = require('./server/error');
+  // create store
+  var derbyStore = store(derby);
 
-  express(store, apps, error, publicDir, function(expressApp, upgrade){
+  // db policy
+  access(derby);
+
+  // add custom hooks
+  hooks(derbyStore);
+
+  // init express with apps
+  express(derbyStore, apps, error, function(expressApp, upgrade) {
     var server = http.createServer(expressApp);
 
     server.on('upgrade', upgrade);
 
-    async.each(apps, bundleApp, function(){
-      server.listen(process.env.PORT, function() {
-        console.log('%d listening. Go to: http://localhost:%d/',
-            process.pid, process.env.PORT);
-      });
-    });
-
-    function bundleApp (app, cb) {
-      app.writeScripts(store, publicDir, {extensions: ['.coffee']}, function(err){
-        if (err) {
-          console.log("Bundle don't created:", chalk.red(app.name), ', error:', err);
-        } else {
-          console.log('Bundle created:', chalk.blue(app.name));
-        }
+    async.each(apps, function(app, cb) {
+      app.writeScripts(derbyStore, publicDir, { extensions: ['.coffee'] }, function() {
+        console.log('Bundle created:', chalk.yellow(app.name));
         cb();
       });
-    }
-
+    }, function() {
+      server.listen(config.app.port, config.app.ip, function() {
+        console.log('%d listening. Go to: http://%s:%d/', process.pid, config.app.ip, config.app.port);
+      });
+    });
   });
 });

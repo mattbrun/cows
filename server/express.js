@@ -1,54 +1,89 @@
-var express = require('express');
+'use strict';
 
-var expressSession = require('express-session');
-var serveStatic = require('serve-static');
-var favicon = require('serve-favicon');
-var compression = require('compression');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var highway = require('racer-highway');
-var derbyLogin = require('derby-login');
+//###################################################################
+// Dependencies
+//###################################################################
 
-module.exports = function (store, apps, error, publicDir, cb){
+var config          = require('./config')
+  , express         = require('express')
+  , expressSession  = require('express-session')
+  , serveStatic     = require('serve-static')
+  , compression     = require('compression')
+  , bodyParser      = require('body-parser')
+  , cookieParser    = require('cookie-parser')
+  , highway         = require('racer-highway')
+  , derbyLogin      = require('derby-login')
+  , crypto          = require('crypto')
+  , loginConfig     = require('../config/login');
 
-  var connectStore = require('connect-mongo')(expressSession);
-  var sessionStore = new connectStore({url: process.env.MONGO_URL});
+
+
+//###################################################################
+// Functions
+//###################################################################
+
+function getRandomHash () {
+  var random = new Date();
+  
+  try {
+    random += crypto.randomBytes(256);
+  } catch (ex) {}
+  
+  return crypto.createHash('sha256').update(random).digest('hex');
+}
+
+
+
+//###################################################################
+// Export
+//###################################################################
+
+module.exports = function(store, apps, error, cb) {
+  var ConnectStore = require('connect-mongo')(expressSession)
+    , sessionStore = new ConnectStore({ url: config.mongo.url });
 
   var session = expressSession({
-    secret: process.env.SESSION_SECRET,
+    secret: getRandomHash(),
     store: sessionStore,
-    cookie: process.env.SESSION_COOKIE,
+    cookie: getRandomHash(),    // FIXME: get random hash
     saveUninitialized: true,
     resave: true
   });
 
-  var handlers = highway(store, {session: session});
+  var handlers = highway(store, { session: session }, {
+    srvPort: config.app.wsPort,
+    srvSecurePort: config.app.wsSecurePort
+  });
 
   var expressApp = express()
-    .use(favicon(publicDir + '/img/favicon.ico'))
     .use(compression())
-    .use(serveStatic(publicDir))
+    .use(serveStatic(process.cwd() + '/public'))
     .use(store.modelMiddleware())
     .use(cookieParser())
     .use(bodyParser.json())
-    .use(bodyParser.urlencoded({extended: true}))
+    .use(bodyParser.urlencoded({ extended: true }))
     .use(session)
-    .use(derbyLogin.middleware(store, require('../config/login')))
+    .use(derbyLogin.middleware(store, loginConfig))
     .use(handlers.middleware)
-
-  apps.forEach(function(app){
+  ;
+  
+  expressApp.use(function (req, res, next) {
+    var userModel = req.getModel().at(derbyLogin.options.collection + '.' + req.session.userId);
+    userModel.fetch(function (err) {
+      if (err) { throw err; }
+      req.session.user = userModel.get();
+      next();
+    });
+  });
+  
+  apps.forEach(function(app) {
     expressApp.use(app.router());
   });
 
-  expressApp.use(require('./routes'));
+  expressApp.all('*', function (req, res, next) { next('404: ' + req.url); });
+  expressApp.use(error);
 
-  expressApp
-    .all('*', function (req, res, next) { next('404: ' + req.url); })
-    .use(error);
-
-  derbyLogin.register('admin@admin.org', 'admin14', { projects: ['*'], isAdmin: true }, function (/*err*/) {
-      // FIXME: check error (throw error only if it's not "userExists")
-  });
+  derbyLogin.register(config.auth.suLogin, config.auth.suPassword, { isAdmin: true }, function (err) { if (err) { throw err; } });
 
   cb(expressApp, handlers.upgrade);
-}
+};

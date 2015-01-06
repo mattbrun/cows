@@ -1,19 +1,28 @@
-var liveDbMongo = require('livedb-mongo');
-var coffeeify = require('coffeeify');
+'use strict';
 
-module.exports = store;
+// #############################################################################
+// Dependencies
+// #############################################################################
 
-function store(derby, publicDir) {
-  var mongo = liveDbMongo(process.env.MONGO_URL + '?auto_reconnect', {safe: true});
+var config        = require('./config')
+  , liveDbMongo   = require('livedb-mongo')
+  , coffeeify     = require('coffeeify')
+  , recerBundle   = require('racer-bundle');
 
-  derby.use(require('racer-bundle'));
 
 
-  var store = derby.createStore({db: mongo});
+// #############################################################################
+// Export
+// #############################################################################
+
+module.exports = function(derby) {
+  derby.use(recerBundle);
+
+  var opts  = { db: liveDbMongo(config.mongo.url + '?auto_reconnect', { safe: true }) }
+    , store = derby.createStore(opts);
 
   store.on('bundle', function(browserify) {
-
-    browserify.transform({global: true}, coffeeify);
+    browserify.transform({ global: true }, coffeeify);
 
     var pack = browserify.pack;
     browserify.pack = function(opts) {
@@ -24,4 +33,4 @@ function store(derby, publicDir) {
   });
 
   return store;
-}
+};

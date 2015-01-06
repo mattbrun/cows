@@ -1,0 +1,46 @@
+<import: src="../sideBar">
+
+<index:>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+          <span class="sr-only">Toggle top bar</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <button id="toggleSideBar" type="button" class="navbar-brand btn btn-link btn-xs" on-click="toggleSideBar()">
+          <span class="sr-only">Toggle side bar</span>
+          <span id="sidebar-icon" class="glyphicon glyphicon-list"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+          {{@content}}
+        </a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+
+          {{if #root.$connection.state !== 'connected'}}
+            <view is="sideBar:navLink">
+              <!--<i class="fa fa-exclamation-triangle"></i> &sp;&sp;-->
+              {{if #root.$connection.state === 'stopped'}}
+                Unable to reconnect &ndash; <a on-click="reload()">Reload</a>
+              {{else}}
+                {{sentenceCase(#root.$connection.state)}}
+                {{unless hideReconnect}}
+                  &sp;&ndash; <a on-click="reconnect()">Reconnect</a>
+                {{/unless}}
+              {{/if}}
+            </view>
+          {{/if}}
+
+          <view is="sideBar:navLink" url="/auth/logout">Logout</view>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
