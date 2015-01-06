@@ -17,6 +17,7 @@ var file = 'dev';
 if (process.env.OPENSHIFT_APP_NAME) {
   file = 'openshift';
 }
+console.log('### config file', file);
 
 var cfgPath = path.join(__dirname, '..', 'config')
   , cfgFile = path.join(cfgPath, file + '.json')
@@ -33,11 +34,11 @@ if (file === 'openshift') {
   config.app.ip = process.env.OPENSHIFT_NODEJS_IP;
   config.app.port = process.env.OPENSHIFT_NODEJS_PORT;
 
-  config.mongo.host = process.env.OPENSHIFT_MONGODB_DB_HOST;
-  config.mongo.port = process.env.OPENSHIFT_MONGODB_DB_PORT;
-  config.mongo.db = process.env.OPENSHIFT_APP_NAME;
-  config.mongo.username = process.env.OPENSHIFT_MONGODB_DB_USERNAME;
-  config.mongo.password = process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
+  config.mongo.host = config.mongo.host || process.env.OPENSHIFT_MONGODB_DB_HOST;
+  config.mongo.port = config.mongo.port || process.env.OPENSHIFT_MONGODB_DB_PORT;
+  config.mongo.db = config.mongo.db || process.env.OPENSHIFT_APP_NAME;
+  config.mongo.username = config.mongo.username || process.env.OPENSHIFT_MONGODB_DB_USERNAME;
+  config.mongo.password = config.mongo.password || process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
 }
 
 config.mongo.url = 'mongodb://';
