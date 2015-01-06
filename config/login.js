@@ -10,7 +10,7 @@ module.exports = {
     email: true
   },
   
-  encryption: 'bcryptjs',
+  encryption: 'scryptjs',
 
   confirmRegistration: false,
 
