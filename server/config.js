@@ -93,5 +93,4 @@ include.forEach(function(fileName) {
 // Exports
 //###################################################################
 
-console.log('### config', config);
 module.exports = exports = config;
