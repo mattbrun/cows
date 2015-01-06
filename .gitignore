@@ -13,3 +13,4 @@ npm-debug.log
 # Project files
 bower_components
 public/derby
+tmp
