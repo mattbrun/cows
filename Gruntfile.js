@@ -29,7 +29,6 @@ module.exports = function(grunt) {
             , 'bower_components/fontawesome/css/font-awesome.min.css'
             , 'bower_components/selectize/dist/css/selectize.css'
             , 'bower_components/selectize/dist/css/selectize.bootstrap3.css'
-            , 'staticSite/css/stylish-portfolio.css'
           ]
         }
       }
