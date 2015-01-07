@@ -5,9 +5,11 @@
 //###################################################################
 
 var config          = require('./config')
+  , path            = require('path')
   , express         = require('express')
   , expressSession  = require('express-session')
   , serveStatic     = require('serve-static')
+  , serveFavicon    = require('serve-favicon')
   , compression     = require('compression')
   , bodyParser      = require('body-parser')
   , cookieParser    = require('cookie-parser')
@@ -54,10 +56,12 @@ module.exports = function(store, apps, error, cb) {
     srvPort: config.app.wsPort,
     srvSecurePort: config.app.wsSecurePort
   });
-
+  
+  var publicDir = path.join(process.cwd(), 'public');
   var expressApp = express()
     .use(compression())
-    .use(serveStatic(process.cwd() + '/public'))
+    .use(serveFavicon(path.join(publicDir, 'img', 'favicon.ico')))
+    .use(serveStatic(publicDir))
     .use(store.modelMiddleware())
     .use(cookieParser())
     .use(bodyParser.json())
