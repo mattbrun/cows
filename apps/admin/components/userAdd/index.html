@@ -1,0 +1,29 @@
+<index:>
+  <div class="userAdd">
+    <h1>Aggiungi utente</h1>
+    
+    <form role="form">
+      <div class="form-group">
+        <input type="email" class="form-control" placeholder="Email" value="{{_email}}">
+      </div>
+      
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="Password" value="{{_password}}">
+      </div>
+      
+      <div class="form-group">
+        <select id="prjsInput" class="form-control" multiple>
+          {{each _staff as #staff}}
+            <option selected="{{#staff.sel}}">{{#staff.name}}</option>
+          {{/}}
+        </select>
+      </div>
+      
+      <div class="checkbox">
+        <label><input type="checkbox" id="admin" checked="{{_admin}}"> Admin?</label>
+      </div>
+      
+      <button type="submit" class="btn btn-success btn-block" on-click="addUser()">Aggiungi</button>
+    </form>    
+
+  </div>

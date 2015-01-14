@@ -1,4 +1,6 @@
 <import: src="./dash">
+<import: src="./users">
+<import: src="./website">
 
 <Title:>
   {{_page.title}}
@@ -16,8 +18,9 @@
 
   <div id="wrapper" class="content">
     <view is="sideBar">
-      <view is="sideBar:navLink" url="{{pathFor('dash')}}">Dash</view>
-      <view is="sideBar:navLink" url="{{pathFor('users')}}">Users</view>
+      <view is="sideBar:navLink" url="{{pathFor('dash')}}">Pannello</view>
+      <view is="sideBar:navLink" url="{{pathFor('users')}}">Utenti</view>
+      <view is="sideBar:navLink" url="{{pathFor('website')}}">Sito veetrina</view>
     </view>
 
     <div id="page-content-wrapper">
