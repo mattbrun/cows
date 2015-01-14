@@ -87,7 +87,12 @@ module.exports = function(store, apps, error, cb) {
   expressApp.all('*', function (req, res, next) { next('404: ' + req.url); });
   expressApp.use(error);
 
-  derbyLogin.register(config.auth.suLogin, config.auth.suPassword, { isAdmin: true }, function (err) { if (err) { throw err; } });
+  derbyLogin.createUser(
+    config.auth.suLogin,
+    config.auth.suPassword,
+    { admin: true, groups: ['*'] },
+    function (err) { if (err) { throw err; } }
+  );
 
   cb(expressApp, handlers.upgrade);
 };
