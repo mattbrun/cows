@@ -2,6 +2,10 @@
   "name": "cows",
   "version": "0.0.1",
   "description": "TODO",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mattbrun/cows.git"
+  },
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -16,27 +20,27 @@
     "connect-mongo": "*",
     "cookie-parser": "*",
     "d-codemirror": "*",
+    "d-draggable-table": "*",
     "derby": "*",
-    "derby-debug": "^0.1.0",
+    "derby-debug": "*",
     "derby-hook": "*",
-    "derby-jade": "^0.6.15",
+    "derby-jade": "*",
     "derby-login": "git://github.com/mattbrun/derby-login.git",
     "derby-router": "*",
     "derby-stylus": "*",
     "express": "*",
     "express-session": "*",
-    "ldapjs": "*",
     "livedb-mongo": "*",
     "lodash": "*",
     "logger": "*",
     "mongodb": "*",
-    "node-gcm": "*",
     "racer-bundle": "*",
     "racer-highway": "*",
     "serve-favicon": "*",
     "serve-static": "*",
     "share-access": "*",
-    "unifiedpush-node-sender": "*"
+    "superagent": "*",
+    "nodemailer": "*"
   },
   "readmeFilename": "README.md"
 }
