@@ -58,9 +58,10 @@ app.get(appUrl, function () {
   this.redirect('users');
 });
 
-app.get('dash',       appUrl + '/dash',     ['user']);
+app.get('dash',       appUrl + '/dash');
 app.get('users',      appUrl + '/users',    ['user']);
-app.get('website',    appUrl + '/website',  ['user']);
+app.get('website',    appUrl + '/website');
+app.get('config',     appUrl + '/config');
 
 
 

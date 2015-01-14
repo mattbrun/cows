@@ -1,6 +1,7 @@
 <import: src="./dash">
 <import: src="./users">
 <import: src="./website">
+<import: src="./config">
 
 <Title:>
   {{_page.title}}
@@ -21,6 +22,7 @@
       <view is="sideBar:navLink" url="{{pathFor('dash')}}">Pannello</view>
       <view is="sideBar:navLink" url="{{pathFor('users')}}">Utenti</view>
       <view is="sideBar:navLink" url="{{pathFor('website')}}">Sito veetrina</view>
+      <view is="sideBar:navLink" url="{{pathFor('config')}}">Configurazione</view>
     </view>
 
     <div id="page-content-wrapper">
