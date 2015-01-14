@@ -9,8 +9,10 @@ module.exports = {
   successUrl: '/coca',
   
   user: {                         // projection
-    id: true,
-    email: true
+    id:       true,
+    email:    true,
+    admin:    true,
+    groups:   true                // FIXME: leave it server side only
   },
   confirmRegistration: false,
 
