@@ -6,16 +6,18 @@
 
 var derby   = require('derby'),
     path    = require('path');
-
+    
 // #############################################################################
 // App init
 // #############################################################################
 
-var appName = path.basename(__dirname),
-    appUrl  = '/' + appName,
-    app     = module.exports = derby.createApp(appName, __filename);
+var appName   = path.basename(__dirname),
+    appUrl    = '/' + appName,
+    appApiUrl = '/api/v1/' + appName,
+    app       = module.exports = derby.createApp(appName, __filename);
 
-var serverRoutes = derby.util.serverRequire(module, './server') || {};
+var appModules    = require('../../libs/appModules'),
+    serverRoutes  = derby.util.serverRequire(module, './server') || {};
 
 if (!derby.util.isProduction) {
   app.use(require('derby-debug'));
@@ -32,6 +34,15 @@ app.component(require('../../components/commonDeps'));
 app.component(require('../../components/topBar'));
 app.component(require('../../components/sideBar'));
 app.component(require('../../components/footer'));
+app.component(require('../../components/mailForm'));
+
+
+
+// #############################################################################
+// Router modules
+// #############################################################################
+
+app.module('user', appModules.user);
 
 
 
@@ -39,31 +50,19 @@ app.component(require('../../components/footer'));
 // App routes
 // #############################################################################
 
-app.get('*', function (page, model, params, next)  {
-  var userId  = model.get('_session.userId')
-    , $user   = model.at('users.' + userId);
-
-  if (userId) {
-    model.subscribe($user, function () {
-      model.ref('_session.user', $user);
-      next();
-    });
-  } else {
-    next();
-  }
-});
-
 app.get(appUrl, function (page, model, params, next) {
   this.redirect('mail');
 });
 
-app.get('mail', appUrl + '/mail');
+app.get('mail', appUrl + '/mail', ['user'], function () {
+  this.page.render('mail');
+});
 
-app.get('calendar', appUrl + '/calendar');
+app.get('calendar', appUrl + '/calendar', ['user']);
 
-app.get('places', appUrl + '/places');
+app.get('places', appUrl + '/places', ['user']);
 
-app.get('market', appUrl + '/market');
+app.get('market', appUrl + '/market', ['user']);
 
 
 
@@ -71,3 +70,4 @@ app.get('market', appUrl + '/market');
 // Server-only routes
 // #############################################################################
 
+app.serverPost('sendEmail', appApiUrl + '/sendEmail', serverRoutes.sendEmail);

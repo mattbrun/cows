@@ -1,0 +1,38 @@
+<index:>
+  <div class="mailForm">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="iFrom" class="col-sm-1 control-label">Mittente</label>
+        <div class="col-sm-11">
+          <p id="iForm">{{from}}</p>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="iTo" class="col-sm-1 control-label">Destinatari</label>
+        <div class="col-sm-11">
+          <input type="email" class="form-control" id="iTo" placeholder="Destinatari" value="{{to}}">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="iSubject" class="col-sm-1 control-label">Oggetto</label>
+        <div class="col-sm-11">
+          <input type="text" class="form-control" id="iTo" placeholder="Oggetto" value="{{subject}}">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="iEmail" class="col-sm-1 control-label">Email</label>
+        <div class="col-sm-11">
+          <textarea id="iEmail" class="form-control" rows="3">{{text}}</textarea>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="col-sm-offset-1 col-sm-11">
+          <button type="submit" class="btn btn-default" on-click="send()">Manda mail</button>
+        </div>
+      </div>
+    </form>
+  </div>
