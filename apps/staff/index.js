@@ -15,7 +15,7 @@ var appName = path.basename(__dirname),
     appUrl  = '/' + appName,
     app     = module.exports = derby.createApp(appName, __filename);
 
-var serverRoutes = derby.util.serverRequire(module, './server') || {};
+var appModules    = require('../../libs/appModules');
 
 if (!derby.util.isProduction) {
   app.use(require('derby-debug'));
@@ -36,32 +36,26 @@ app.component(require('../../components/footer'));
 
 
 // #############################################################################
-// App routes
+// Router modules
 // #############################################################################
 
-app.get('*', function (page, model, params, next)  {
-  var userId  = model.get('_session.userId')
-    , $user   = model.at('users.' + userId);
+app.module('user', appModules.user);
 
-  if (userId) {
-    model.subscribe($user, function () {
-      model.ref('_session.user', $user);
-      next();
-    });
-  } else {
-    next();
-  }
-});
+
+
+// #############################################################################
+// App routes
+// #############################################################################
 
 app.get(appUrl, function (page, model, params, next) {
   this.redirect('mail');
 });
 
-app.get('mail', appUrl + '/mail');
+app.get('mail', appUrl + '/mail', ['user']);
 
-app.get('registry', appUrl + '/registry');
+app.get('registry', appUrl + '/registry', ['user']);
 
-app.get('accounting', appUrl + '/accounting');
+app.get('accounting', appUrl + '/accounting', ['user']);
 
 
 
