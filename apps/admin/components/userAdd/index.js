@@ -11,25 +11,28 @@ Useradd.prototype.name = 'userAdd';
 Useradd.prototype.create = function (model) {
   model.set('_email', '');
   model.set('_password', '');
-  model.set('_staff', '');
   model.set('_admin', '');
+  model.ref('_groups', model.root.at('_page.groups'));
 };
 
 Useradd.prototype.addUser = function () {
-  var staff     = this.model.get('_staff'),
-      selStaff  = ['*'];
+  var staff     = this.model.get('_groups'),
+      selStaff  = '';
 
   if (staff) {
-    staff.forEach(function (p) {
-      if (p.sel) { selStaff.push(p.name); }
-    });
+    for (var i = 0; i < staff.length; i++) {
+      if (staff[i].sel) {
+        selStaff = staff[i].id;
+        break;
+      }
+    }
   }
 
   var user = {
     email: this.model.get('_email'),
-    password: this.model.get('_password'),  // FIXME: encrypt client-side
+    password: this.model.get('_password'),  // FIXME: encrypt client-side ??
     data: {
-      groups: selStaff,
+      group: selStaff,
       admin: this.model.get('_admin')
     }
   };

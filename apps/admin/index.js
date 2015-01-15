@@ -47,6 +47,7 @@ app.component(require('./components/groupsList'));
 // #############################################################################
 
 app.module('user', appModules.user);
+app.module('groups', appModules.groups);
 
 
 
@@ -59,7 +60,7 @@ app.get(appUrl, function () {
 });
 
 app.get('dash',       appUrl + '/dash');
-app.get('users',      appUrl + '/users',    ['user']);
+app.get('users',      appUrl + '/users',    ['groups']);
 app.get('website',    appUrl + '/website');
 app.get('config',     appUrl + '/config');
 

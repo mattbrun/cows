@@ -90,7 +90,7 @@ module.exports = function(store, apps, error, cb) {
   derbyLogin.createUser(
     config.auth.suLogin,
     config.auth.suPassword,
-    { admin: true, groups: ['*'] },
+    { admin: true, group: '*' },
     function (err) { if (err) { throw err; } }
   );
 

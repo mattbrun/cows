@@ -1,18 +1,23 @@
-module.exports = Groupadd;
+'use strict';
 
-function Groupadd(){}
+function GroupsList(){}
+module.exports = GroupsList;
 
-Groupadd.prototype.view = __dirname;
-Groupadd.prototype.name = 'groupAdd';
+GroupsList.prototype.view = __dirname;
+GroupsList.prototype.name = 'groupsList';
 
-Groupadd.prototype.init = function(){
-
+GroupsList.prototype.create = function (model) {
+  model.set('_newGroupName', '');
+  model.ref('_groups', model.root.at('_page.groups'));
 };
 
-Groupadd.prototype.create = function(){
+GroupsList.prototype.addGroup = function () {
+  var ng = this.model.get('_newGroupName');
 
+  this.model.root.add('groups', {name: ng});
+  this.model.set('_newGroupName', '');
 };
 
-Groupadd.prototype.destroy = function(){
-
+GroupsList.prototype.delGroup = function (g) {
+  this.model.root.del('groups.' + g.id);
 };

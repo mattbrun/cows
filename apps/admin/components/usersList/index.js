@@ -1,33 +1,37 @@
 'use strict';
 
-function Userslist () {}
-module.exports = Userslist;
+var _ = require('lodash');
 
-Userslist.prototype.view = __dirname;
-Userslist.prototype.name = 'usersList';
+function UsersList () {}
+module.exports = UsersList;
 
-Userslist.prototype.create = function (model) {
+UsersList.prototype.view = __dirname;
+UsersList.prototype.name = 'usersList';
+
+UsersList.prototype.create = function (model) {
   var usersQuery = model.root.query('users', {});
 
+  model.ref('_groups', model.root.at('_page.groups'));
   usersQuery.subscribe(function (err) {
     if (err) { throw err; }
     model.ref('_users', usersQuery);
   });
 };
 
-Userslist.prototype.arrayToString = function (array) {
-  var result = "";
+UsersList.prototype.getGroupName = function (gid) {
+  var result = '';
+  console.log('### gid', gid);
 
-  if (array) {
-    for (var i = 0; i < array.length - 1; i++) {
-      result += array[i] + ', ';
-    }
-    result += array[i];
+  if (gid === '*') {
+    result = gid;
+  } else {
+    var i = _.findIndex(this.model.get('_groups'), {id: gid});
+    result = this.model.get('_groups.' + i + '.name') + ' ';
   }
 
   return result;
 };
 
-Userslist.prototype.delUser = function (uid) {
+UsersList.prototype.delUser = function (uid) {
   this.model.root.del('users.' + uid);
 };

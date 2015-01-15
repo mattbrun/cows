@@ -1,4 +1,31 @@
 <index:>
-  <div class="groupAdd">
+  <div class="groupsList">
     <h1>Staff</h1>
+
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Nuova staff" value="{{_newGroupName}}">
+      <span class="input-group-btn">
+        <button class="btn btn-default btn-success" type="button" on-click="addGroup()">
+          <span class="glyphicon glyphicon-plus"></span>
+        </button>
+      </span>
+    </div>
+
+    <div class="tabel-responsive">
+      <table class="table table-hover">
+        <tbody>
+          {{each _groups as #group, #i}}
+          <tr>
+            <td>{{#group.name}}</td>
+            <td class="text-right nowrap">
+              <button class="btn btn-xs btn-danger" on-click="delGroup(#group)">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+
   </div>
