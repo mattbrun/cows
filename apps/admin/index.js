@@ -56,13 +56,13 @@ app.module('groups', appModules.groups);
 // #############################################################################
 
 app.get(appUrl, function () {
-  this.redirect('users');
+  this.redirect('stats');
 });
 
-app.get('dash',       appUrl + '/dash');
 app.get('users',      appUrl + '/users',    ['groups']);
 app.get('website',    appUrl + '/website');
 app.get('config',     appUrl + '/config');
+app.get('stats',      appUrl + '/stats');
 
 
 

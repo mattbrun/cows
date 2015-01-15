@@ -1,4 +1,4 @@
-<import: src="./dash">
+<import: src="./stats">
 <import: src="./users">
 <import: src="./website">
 <import: src="./config">
@@ -19,10 +19,10 @@
 
   <div id="wrapper" class="content">
     <view is="sideBar">
-      <view is="sideBar:navLink" url="{{pathFor('dash')}}">Pannello</view>
       <view is="sideBar:navLink" url="{{pathFor('users')}}">Utenti</view>
       <view is="sideBar:navLink" url="{{pathFor('website')}}">Sito veetrina</view>
       <view is="sideBar:navLink" url="{{pathFor('config')}}">Configurazione</view>
+      <view is="sideBar:navLink" url="{{pathFor('stats')}}">Statistiche</view>
     </view>
 
     <div id="page-content-wrapper">
