@@ -10,15 +10,12 @@ Mailform.prototype.view = __dirname;
 Mailform.prototype.name = 'mailForm';
 
 
-Mailform.prototype.init = function () {
+Mailform.prototype.create = function (model) {
   this.model.set('from', this.model.root.get('_page.user.email'));
   this.model.set('to', '');
   this.model.set('subject', '');
-  this.model.set('text', 'ciao');
-};
+  this.model.set('text', '');
 
-
-Mailform.prototype.create = function (model) {
   // FIXME: put the error handling in a separate component
   if (this.fields) {
     var cleanError = function() {
