@@ -1,5 +1,3 @@
-'use strict';
-
 var errorApp = require('../apps/error');
 
 module.exports = function(err, req, res, next) {

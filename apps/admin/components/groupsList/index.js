@@ -1,5 +1,3 @@
-'use strict';
-
 function GroupsList(){}
 module.exports = GroupsList;
 

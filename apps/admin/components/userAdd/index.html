@@ -14,8 +14,8 @@
       <div class="form-group">
         <select id="prjsInput" class="form-control">
           {{each _groups as #group}}
-            <option selected="{{#group.sel}}">{{#group.name}}</option>
-          {{/}}
+            <option selected="{{_selectedGroup === #group.name}}">{{#group.name}}</option>
+          {{/each}}
         </select>
       </div>
       

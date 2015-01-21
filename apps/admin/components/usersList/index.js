@@ -1,5 +1,3 @@
-'use strict';
-
 var _ = require('lodash');
 
 function UsersList () {}
@@ -20,7 +18,6 @@ UsersList.prototype.create = function (model) {
 
 UsersList.prototype.getGroupName = function (gid) {
   var result = '';
-  console.log('### gid', gid);
 
   if (gid === '*') {
     result = gid;

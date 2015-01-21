@@ -1,5 +1,3 @@
-'use strict';
-
 // #############################################################################
 // Dependencies
 // #############################################################################
@@ -21,13 +19,16 @@ function registerHooks (/*store*/) {
       var time = +new Date();
       model.set('todos.'+docId+'.ctime', time);
     });
+    model.close();
   });
   store.hook('change', 'users.*.location', function (docId, value, op, session, backend){
     var model = store.createModel();
     console.log('User change location HOOK');
+    model.close();
   });
   store.hook('del', 'todos', function(docId, value, session, backend) {
     var model = store.createModel();
+    model.close();
   });
   */
 }

@@ -1,6 +1,5 @@
-'use strict';
-
-var superagent = require('superagent');
+var superagent  = require('superagent'),
+    _           = require('lodash');
 
 function Useradd(){}
 module.exports = Useradd;
@@ -16,23 +15,17 @@ Useradd.prototype.create = function (model) {
 };
 
 Useradd.prototype.addUser = function () {
-  var staff     = this.model.get('_groups'),
-      selStaff  = '';
+  var staff   = this.model.get('_groups'),
+      i       = _.findIndex(staff, {name: this.model.get('_selectedGroup')});
 
-  if (staff) {
-    for (var i = 0; i < staff.length; i++) {
-      if (staff[i].sel) {
-        selStaff = staff[i].id;
-        break;
-      }
-    }
-  }
-
+  console.log('### staff', staff);
+  console.log('### i', i);
+  
   var user = {
     email: this.model.get('_email'),
     password: this.model.get('_password'),  // FIXME: encrypt client-side ??
     data: {
-      group: selStaff,
+      group: staff[i].id,
       admin: this.model.get('_admin')
     }
   };

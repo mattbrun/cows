@@ -1,7 +1,5 @@
-'use strict';
-
 // #############################################################################
-// dependencies
+// Dependencies
 // #############################################################################
 
 // Requires which injects themselves in the global space
@@ -26,8 +24,11 @@ var publicDir = path.join(process.cwd(), 'public');
 
 
 // #############################################################################
-// start app
+// Start app
 // #############################################################################
+
+// Sharejs db access policies
+derby.use(access);
 
 derby.run(function() {
   require('coffee-script/register');
@@ -46,9 +47,6 @@ derby.run(function() {
 
   // create store
   var derbyStore = store(derby);
-
-  // db policy
-  access(derby);
 
   // add custom hooks
   hooks(derbyStore);

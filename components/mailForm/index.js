@@ -1,5 +1,3 @@
-'use strict';
-
 var superagent = require('superagent');
 
 module.exports = Mailform;
@@ -15,29 +13,12 @@ Mailform.prototype.create = function (model) {
   this.model.set('to', '');
   this.model.set('subject', '');
   this.model.set('text', '');
-
-  // FIXME: put the error handling in a separate component
-  if (this.fields) {
-    var cleanError = function() {
-      model.del('error');
-    };
-    
-    for (var i = 0; i < this.fields.length; i++) {
-      var field = this.fields[i];
-      model.on('change', field, cleanError);
-    }
-  }
 };
 
 
 Mailform.prototype.send = function () {
-  var self = this,
+  var self  = this,
       model = this.model;
-
-  function error (message) {
-    model.set('error', message);
-    self.emit('error', message);
-  }
 
   var email = {
     from      : this.model.get('from'),
@@ -54,7 +35,7 @@ Mailform.prototype.send = function () {
       if (!res.ok) { return error(res.text); }
 
       if (!res.body.success) {
-        error(res.body.error);
+        console.log('### ERROR', res.body.error);
       } else {
         console.log('mail mandata', res);
       }

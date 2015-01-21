@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   
   user: {
@@ -21,6 +19,14 @@ module.exports = {
     setup: function () {
       this.model.ref('_page.groups', this.groupsQuery);
     }
-  }
+  }/*,
   
+  usersEmail: {
+    load: function () {
+    },
+    setup: function () {
+      this.model.ref
+    }
+  }
+  */
 };
