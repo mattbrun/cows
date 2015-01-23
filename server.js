@@ -53,6 +53,9 @@ derby.run(function() {
 
   // init express with apps
   express(derbyStore, apps, error, function(expressApp, upgrade) {
+    // Sharejs db access policies
+    //derby.use(access);
+    
     var server = http.createServer(expressApp);
 
     server.on('upgrade', upgrade);
