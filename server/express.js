@@ -70,7 +70,10 @@ module.exports = function(store, apps, error, cb) {
   ;
   
   expressApp.use(function (req, res, next) {
-    var userModel = req.getModel().at(derbyLogin.options.collection + '.' + req.session.userId);
+    var model       = req.getModel(),
+        userPath    = derbyLogin.options.collection + '.' + req.session.userId,
+        userModel   = model.at(userPath);
+    
     userModel.fetch(function (err) {
       if (err) { throw err; }
       req.session.user = userModel.get();
