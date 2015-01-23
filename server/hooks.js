@@ -18,8 +18,8 @@ function registerHooks (/*store*/) {
       if (err) { throw err; }
       var time = +new Date();
       model.set('todos.'+docId+'.ctime', time);
+      model.close();
     });
-    model.close();
   });
   store.hook('change', 'users.*.location', function (docId, value, op, session, backend){
     var model = store.createModel();
