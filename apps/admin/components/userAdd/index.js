@@ -18,9 +18,6 @@ Useradd.prototype.addUser = function () {
   var staff   = this.model.get('_groups'),
       i       = _.findIndex(staff, {name: this.model.get('_selectedGroup')});
 
-  console.log('### staff', staff);
-  console.log('### i', i);
-  
   var user = {
     email: this.model.get('_email'),
     password: this.model.get('_password'),  // FIXME: encrypt client-side ??
