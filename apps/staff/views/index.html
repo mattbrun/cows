@@ -1,4 +1,5 @@
 <import: src="./mail">
+<import: src="./calendar">
 <import: src="./registry">
 <import: src="./accounting">
 
@@ -19,6 +20,7 @@
   <div id="wrapper" class="content">
     <view is="sideBar">
       <view is="sideBar:navLink" url="{{pathFor('mail')}}">Mail</view>
+      <view is="sideBar:navLink" url="{{pathFor('calendar')}}">Calendario</view>
       <view is="sideBar:navLink" url="{{pathFor('registry')}}">Anagrafe</view>
       <view is="sideBar:navLink" url="{{pathFor('accounting')}}">Contabilita</view>
     </view>

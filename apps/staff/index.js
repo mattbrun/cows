@@ -51,6 +51,8 @@ app.get(appUrl, function (page, model, params, next) {
 
 app.get('mail', appUrl + '/mail', ['user']);
 
+app.get('calendar', appUrl + '/calendar', ['user']);
+
 app.get('registry', appUrl + '/registry', ['user']);
 
 app.get('accounting', appUrl + '/accounting', ['user']);
