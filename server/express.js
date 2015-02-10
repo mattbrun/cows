@@ -45,9 +45,11 @@ module.exports = function(store, apps, error, cb) {
   var session = expressSession({
     secret: (config.profile === 'dev' ? 'fc683cd9ed1990ca2ea10b84e5e6fba048c24929' : getRandomHash()),
     store: sessionStore,
-    cookie: (config.profile === 'dev' ? '34657e170f96758869403e3fafbc0a6f717423ca' : getRandomHash()),
-    saveUninitialized: true,
-    resave: true
+    cookie: (config.profile === 'dev' ? {} : {maxAge: config.auth.cookieTimeout}),
+    rolling: true,
+    unset: "destroy",
+    saveUninitialized: false,
+    resave: false
   });
 
   var handlers = highway(store, { session: session }, {
