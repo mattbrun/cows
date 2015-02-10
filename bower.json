@@ -2,10 +2,10 @@
   "name": "picua",
   "version": "0.0.1",
   "dependencies": {
-    "bootstrap": "~3.3.1",
-    "fontawesome": "~4.2.0",
-    "selectize": "~0.11.2",
-    "html5shiv": "~3.7.2",
-    "respond": "~1.4.2"
+    "bootstrap": "*",
+    "fontawesome": "*",
+    "selectize": "*",
+    "html5shiv": "*",
+    "respond": "*"
   }
 }
