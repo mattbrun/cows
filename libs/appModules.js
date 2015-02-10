@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 module.exports = {
   
   user: {
@@ -19,14 +21,17 @@ module.exports = {
     setup: function () {
       this.model.ref('_page.groups', this.groupsQuery);
     }
-  }/*,
+  },
   
   usersEmail: {
     load: function () {
+      this.usersQuery = this.model.query('users', {});
+      this.addSubscription(this.usersQuery);
     },
     setup: function () {
-      this.model.ref
+      this.emails = _.pluck(this.usersQuery.get(), 'email');
+      this.model.set('_page.usersEmail', this.emails);
     }
   }
-  */
+
 };

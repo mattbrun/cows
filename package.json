@@ -34,13 +34,13 @@
     "lodash": "*",
     "logger": "*",
     "mongodb": "*",
+    "nodemailer": "*",
     "racer-bundle": "*",
     "racer-highway": "*",
     "serve-favicon": "*",
     "serve-static": "*",
     "share-access": "*",
-    "superagent": "*",
-    "nodemailer": "*"
+    "superagent": "*"
   },
   "readmeFilename": "README.md"
 }
