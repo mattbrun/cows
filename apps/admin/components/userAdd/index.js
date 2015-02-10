@@ -4,6 +4,10 @@ var superagent  = require('superagent'),
 function Useradd(){}
 module.exports = Useradd;
 
+function toBoolean (b) {
+  return (b || (b !== '') || (b === 'true'));
+}
+
 Useradd.prototype.view = __dirname;
 Useradd.prototype.name = 'userAdd';
 
@@ -16,14 +20,16 @@ Useradd.prototype.create = function (model) {
 
 Useradd.prototype.addUser = function () {
   var staff   = this.model.get('_groups'),
-      i       = _.findIndex(staff, {name: this.model.get('_selectedGroup')});
+      i       = _.findIndex(staff, {name: this.model.get('_selectedGroup')}),
+      isAdmin = toBoolean(this.model.get('_admin'));
 
+  if (i < 0) { i = 0; }
   var user = {
     email: this.model.get('_email'),
-    password: this.model.get('_password'),  // FIXME: encrypt client-side ??
+    password: this.model.get('_password'),
     data: {
       group: staff[i].id,
-      admin: this.model.get('_admin')
+      admin: isAdmin
     }
   };
   
@@ -31,9 +37,9 @@ Useradd.prototype.addUser = function () {
   superagent.post(postPath).send(user).end(function (res) {
     if (!res.ok) {
       // TODO: handle error
-      console.log('### res', res);
+      throw res;
     } else {
-      console.log('### res', res);
+      //console.log('### res', res);
     }
   });
 };
