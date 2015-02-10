@@ -25,19 +25,20 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-
           {{if #root.$connection.state !== 'connected'}}
-            <view is="navLink">
-              <!--<i class="fa fa-exclamation-triangle"></i> &sp;&sp;-->
-              {{if #root.$connection.state === 'stopped'}}
-                Unable to reconnect &ndash; <a on-click="reload()">Reload</a>
-              {{else}}
-                {{sentenceCase(#root.$connection.state)}}
-                {{unless hideReconnect}}
-                  &sp;&ndash; <a on-click="reconnect()">Reconnect</a>
-                {{/unless}}
-              {{/if}}
-            </view>
+            <li>
+              <a href="#">
+                {{if #root.$connection.state === 'stopped'}}
+                  Unable to reconnect &ndash; <a on-click="reload()">Reload</a>
+                {{else}}
+                  {{sentenceCase(#root.$connection.state)}}
+                  {{unless hideReconnect}}
+                    &sp;&ndash; <a on-click="reconnect()">Reconnect</a>
+                  {{/unless}}
+                {{/if}}
+                <span class="sr-only">(Log-out)</span>
+              </a>
+            </li>
           {{/if}}
 
           <view is="navLink" url="/auth/logout">Logout</view>
@@ -47,8 +48,8 @@
   </nav>
 
 <navLink:>
-  <li>
-    <a class="{{if $render.url === @url}}active{{/}}" href="{{@url}}">
+  <li class="{{if $render.url === @url}}active{{/}}">
+    <a href="{{@url}}">
       {{if @title}}
         {{@title}}
       {{else if @content}}
