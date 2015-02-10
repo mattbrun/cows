@@ -1,28 +1,39 @@
 var superagent = require('superagent');
 
+function Mailform(){}
 module.exports = Mailform;
 
-function Mailform(){}
-
 Mailform.prototype.view = __dirname;
+
 Mailform.prototype.name = 'mailForm';
+
+Mailform.prototype.init = function (model) {
+  model.setNull('from', model.root.get('_page.user.email'));
+  model.setNull('to', model.get('@to'));
+  model.setNull('subject', '');
+  model.setNull('text', '');
+};
 
 
 Mailform.prototype.create = function (model) {
-  this.model.set('from', this.model.root.get('_page.user.email'));
-  this.model.set('to', '');
-  this.model.set('subject', '');
-  this.model.set('text', '');
+  this.selectize = $('#iTo').selectize({
+    plugins: ['remove_button']
+  })[0];
 };
 
 
 Mailform.prototype.send = function () {
-  var self  = this,
-      model = this.model;
+  var self    = this,
+      email   = {},
+      emails  = [];
 
-  var email = {
+  for (var i = 0; i < this.selectize.length; i++) {
+    emails.push(self.selectize[i].value);
+  }
+
+  email = {
     from      : this.model.get('from'),
-    to        : this.model.get('to'),
+    to        : emails,
     subject   : this.model.get('subject'),
     text      : this.model.get('text'),
   };
@@ -32,12 +43,12 @@ Mailform.prototype.send = function () {
     .send(email)
     .set('X-Requested-With', 'XMLHttpRequest')
     .end(function (res) {
-      if (!res.ok) { return error(res.text); }
-
-      if (!res.body.success) {
-        console.log('### ERROR', res.body.error);
+      if (!res.ok) {
+        // TODO: handle error
+        throw res;
       } else {
-        console.log('mail mandata', res);
+        // FIXME reset data without refreshing page
+        history.go('/coca/mail');
       }
     });
 };
