@@ -41,6 +41,7 @@ app.component(require('../../components/mailForm'));
 // #############################################################################
 
 app.module('user', appModules.user);
+app.module('usersEmail', appModules.usersEmail);
 
 
 
@@ -52,9 +53,7 @@ app.get(appUrl, function (page, model, params, next) {
   this.redirect('mail');
 });
 
-app.get('mail', appUrl + '/mail', ['user'], function () {
-  this.page.render('mail');
-});
+app.get('mail', appUrl + '/mail', ['user', 'usersEmail']);
 
 app.get('calendar', appUrl + '/calendar', ['user']);
 
