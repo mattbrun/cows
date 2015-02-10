@@ -18,12 +18,11 @@ var mailTransporter = nodemailer.createTransport();
 // Routes
 // #############################################################################
 
-module.exports.sendEmail = function (req, resp, next) {
+module.exports.sendEmail = function (req, res, next) {
   var email = req.body;
-  
-  console.log('### email', email);
+
   mailTransporter.sendMail(email, function (err, info) {
     if (err) { return next(err); }
-    console.log('Message sent:', info);
+    res.status(200).json(info);
   });
 };
