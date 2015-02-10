@@ -7,11 +7,11 @@ require('logger');
 
 var path    = require('path')
   , async   = require('async')
-  , http    = require('http')
-  , config  = require('./server/config');
+  , http    = require('http');
 
 var derby   = require('derby')
   , clean   = require('./server/clean')
+  , config  = require('./server/config')
   , store   = require('./server/store')
   , access  = require('./server/access')
   , hooks   = require('./server/hooks')
