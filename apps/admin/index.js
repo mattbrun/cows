@@ -50,6 +50,19 @@ app.module('groups', appModules.groups);
 
 
 // #############################################################################
+// Middleware
+// #############################################################################
+
+function isAdmin (app, model, uri, cb) {
+  if (app.req.session.user.admin) {
+    this.next();
+  } else {
+    // TODO return an error to the user
+    this.next('User should be an admin to get access!');
+  }
+}
+
+// #############################################################################
 // App routes
 // #############################################################################
 
@@ -57,10 +70,10 @@ app.get(appUrl, function () {
   this.redirect('users');
 });
 
-app.get('users',      appUrl + '/users',    ['groups']);
-app.get('website',    appUrl + '/website');
-app.get('config',     appUrl + '/config');
-app.get('stats',      appUrl + '/stats');
+app.get('users',      appUrl + '/users',    isAdmin,    ['groups']);
+app.get('website',    appUrl + '/website',  isAdmin);
+app.get('config',     appUrl + '/config',   isAdmin);
+app.get('stats',      appUrl + '/stats',    isAdmin);
 
 
 

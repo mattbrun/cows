@@ -14,7 +14,9 @@
   <view is="topBar" brand="Vicenza 1">
     <view is="topBar:navLink" url="/coca">Co.Ca.</view>
     <view is="topBar:navLink" url="/staff">Staff</view>
+    {{if _page.user.admin}}
     <view is="topBar:navLink" url="/admin">Admin</view>
+    {{/if}}
   </view>
 
   <div id="wrapper" class="content">
