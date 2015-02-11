@@ -25,10 +25,14 @@ module.exports = function(grunt) {
         },
         files: {
           'public/css/main.min.css': [
-            'bower_components/bootstrap/dist/css/bootstrap.min.css'
-            , 'bower_components/fontawesome/css/font-awesome.min.css'
-            , 'bower_components/selectize/dist/css/selectize.css'
-            , 'bower_components/selectize/dist/css/selectize.bootstrap3.css'
+            'bower_components/bootstrap/dist/css/bootstrap.min.css',
+            'bower_components/fontawesome/css/font-awesome.min.css',
+            'bower_components/selectize/dist/css/selectize.css',
+            'bower_components/selectize/dist/css/selectize.bootstrap3.css'
+          ],
+          'public/css/home-page.min.css': [
+            'staticSite/css/agency.css',
+            'staticSite/css/google-fonts.css'
           ]
         }
       }
@@ -41,21 +45,30 @@ module.exports = function(grunt) {
       bundle: {
         files: {
           'public/js/ie.js': [
-            'bower_components/html5shiv/dist/html5shiv.js'
-            , 'bower_components/respond/dest/respond.src.js'
+            'bower_components/html5shiv/dist/html5shiv.js',
+            'bower_components/respond/dest/respond.src.js'
           ],
           'public/js/main.js': [
-            'bower_components/jquery/dist/jquery.js'
-            , 'bower_components/bootstrap/dist/js/bootstrap.js'
-            , 'bower_components/selectize/dist/js/standalone/selectize.js'
-            , 'bower_components/chartjs/Chart.js'
-          ]
+            'bower_components/jquery/dist/jquery.js',
+            'bower_components/bootstrap/dist/js/bootstrap.js',
+            'bower_components/selectize/dist/js/standalone/selectize.js',
+            'bower_components/chartjs/Chart.js'
+          ],
+          'public/js/home-page.min.js': [
+            'bower_components/jquery.easing/js/jquery.easing.min.js',
+            'bower_components/classie/classie.js',
+            'bower_components/jqBootstrapValidation/dist/jqBootstrapValidation-1.3.7.js',
+            'staticSite/js/cbpAnimatedHeader.js',
+            'staticSite/js/contact_me.js',
+            'staticSite/js/agency.js'
+          ],
         }
       },
       dev: {
         files: {
           'public/js/ie.min.js': 'public/js/ie.js',
-          'public/js/main.min.js': 'public/js/main.js'
+          'public/js/main.min.js': 'public/js/main.js',
+          'public/js/home-page.min.js': 'public/js/home-page.js'
         }
       }
     },
@@ -64,7 +77,8 @@ module.exports = function(grunt) {
       bundle: {
         files: {
           'public/js/ie.min.js': 'public/js/ie.js',
-          'public/js/main.min.js': 'public/js/main.js'
+          'public/js/main.min.js': 'public/js/main.js',
+          'public/js/home-page.min.js': 'public/js/home-page.js',
         }
       }
     },
@@ -72,8 +86,9 @@ module.exports = function(grunt) {
     clean: {
       bundle: {
         src: [
-          'public/js/ie.js'
-          , 'public/js/main.js'
+          'public/js/ie.js',
+          'public/js/main.js',
+          'public/js/home-page.js'
         ]
       }
     }

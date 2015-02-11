@@ -6,6 +6,12 @@
     "fontawesome": "*",
     "selectize": "*",
     "html5shiv": "*",
-    "respond": "*"
+    "respond": "*",
+    "classie": "*",
+    "jquery.easing": "*",
+    "jqBootstrapValidation": "*"
+  },
+  "resolutions": {
+    "sifter": "0.4.x"
   }
 }
