@@ -29,8 +29,18 @@ module.exports = {
       this.addSubscription(this.usersQuery);
     },
     setup: function () {
-      this.emails = _.pluck(this.usersQuery.get(), 'email');
-      this.model.set('_page.usersEmail', this.emails);
+      var uq      = this.usersQuery.get(),
+          //e       = _.pluck(uq, 'email'),
+          emails  = [];
+
+      uq.forEach(function (user) {
+        emails.push({
+          email: user.email,
+          gid: user.group
+        });
+      });
+
+      this.model.set('_page.usersEmail', emails);
     }
   }
 
