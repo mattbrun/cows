@@ -70,10 +70,10 @@ app.get(appUrl, function () {
   this.redirect('users');
 });
 
-app.get('users',      appUrl + '/users',    isAdmin,    ['groups']);
-app.get('website',    appUrl + '/website',  isAdmin);
-app.get('config',     appUrl + '/config',   isAdmin);
-app.get('stats',      appUrl + '/stats',    isAdmin);
+app.get('users',      appUrl + '/users',    isAdmin,  ['user', 'groups']);
+app.get('website',    appUrl + '/website',  isAdmin,  ['user']);
+app.get('config',     appUrl + '/config',   isAdmin,  ['user']);
+app.get('stats',      appUrl + '/stats',    isAdmin,  ['user']);
 
 
 
