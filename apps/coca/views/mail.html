@@ -1,5 +1,10 @@
 <index:>
   <div class="row">
     <h1>Mail</h1>
-    <view name="mailForm" to="{{_page.usersEmail}}"></view>
+
+    <view name="mailForm"
+          emailSender="{{_page.user.email}}"
+          emailRecipients="{{_page.usersEmail}}"
+          emailGroups="{{_page.groups}}">
+    </view>
   </div>

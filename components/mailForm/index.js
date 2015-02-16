@@ -1,38 +1,37 @@
 var superagent = require('superagent');
 
-function Mailform(){}
-module.exports = Mailform;
+function MailForm(){}
+module.exports = MailForm;
 
-Mailform.prototype.view = __dirname;
+MailForm.prototype.view = __dirname;
 
-Mailform.prototype.name = 'mailForm';
+MailForm.prototype.name = 'mailForm';
 
-Mailform.prototype.init = function (model) {
-  model.setNull('from', model.root.get('_page.user.email'));
-  model.setNull('to', model.get('@to'));
+
+MailForm.prototype.init = function (model) {
   model.setNull('subject', '');
   model.setNull('text', '');
 };
 
 
-Mailform.prototype.create = function (model) {
+MailForm.prototype.create = function (model) {
   this.selectize = $('#iTo').selectize({
     plugins: ['remove_button']
-  })[0];
+  })[0].selectize;
 };
 
 
-Mailform.prototype.send = function () {
+MailForm.prototype.send = function () {
   var self    = this,
       email   = {},
       emails  = [];
 
   for (var i = 0; i < this.selectize.length; i++) {
-    emails.push(self.selectize[i].value);
+    emails.push(self.selectize[0][i].value);
   }
 
   email = {
-    from      : this.model.get('from'),
+    from      : this.model.get('emailSender'),
     to        : emails,
     subject   : this.model.get('subject'),
     text      : this.model.get('text'),
@@ -51,4 +50,18 @@ Mailform.prototype.send = function () {
         history.go('/coca/mail');
       }
     });
+};
+
+
+MailForm.prototype.clickEmailGroupAll = function () {
+  var self = this;
+
+  this.model.get('emailRecipients').forEach(function (e) {
+    self.selectize.addItem(e.email);
+  });
+};
+
+
+MailForm.prototype.clickEmailGroupNone = function () {
+  this.selectize.clear();
 };
