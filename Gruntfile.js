@@ -54,7 +54,7 @@ module.exports = function(grunt) {
             'bower_components/selectize/dist/js/standalone/selectize.js',
             'bower_components/chartjs/Chart.js'
           ],
-          'public/js/home-page.min.js': [
+          'public/js/home-page.js': [
             'bower_components/jquery.easing/js/jquery.easing.min.js',
             'bower_components/classie/classie.js',
             'bower_components/jqBootstrapValidation/dist/jqBootstrapValidation-1.3.7.js',
