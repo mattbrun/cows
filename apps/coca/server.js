@@ -20,7 +20,7 @@ var mailTransporter = nodemailer.createTransport();
 
 module.exports.sendEmail = function (req, res, next) {
   var email = req.body;
-
+  
   mailTransporter.sendMail(email, function (err, info) {
     if (err) { return next(err); }
     res.status(200).json(info);

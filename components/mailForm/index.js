@@ -23,16 +23,11 @@ MailForm.prototype.create = function (model) {
 
 MailForm.prototype.send = function () {
   var self    = this,
-      email   = {},
-      emails  = [];
-
-  for (var i = 0; i < this.selectize.length; i++) {
-    emails.push(self.selectize[0][i].value);
-  }
+      email   = {};
 
   email = {
     from      : this.model.get('emailSender'),
-    to        : emails,
+    to        : self.selectize.items,
     subject   : this.model.get('subject'),
     text      : this.model.get('text'),
   };
