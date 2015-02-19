@@ -1,5 +1,3 @@
-var _ = require('lodash');
-
 module.exports = {
   
   user: {
@@ -23,6 +21,16 @@ module.exports = {
     }
   },
   
+  users: {
+    load: function () {
+      this.users = this.model.query('users', {});
+      this.addSubscription(this.users);
+    },
+    setup: function () {
+      this.model.ref('_page.users', this.users);
+    }
+  },
+  
   usersEmail: {
     load: function () {
       this.usersQuery = this.model.query('users', {});
@@ -30,7 +38,6 @@ module.exports = {
     },
     setup: function () {
       var uq      = this.usersQuery.get(),
-          //e       = _.pluck(uq, 'email'),
           emails  = [];
 
       uq.forEach(function (user) {
