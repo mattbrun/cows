@@ -14,3 +14,8 @@ npm-debug.log
 bower_components
 public/derby
 tmp
+
+# Build files
+public/js/home-page.js
+public/js/ie.js
+public/js/main.js
