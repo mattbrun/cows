@@ -1,4 +1,5 @@
-var superagent = require('superagent');
+var superagent  = require('superagent'),
+    _           = require('lodash');
 
 function MailForm(){}
 module.exports = MailForm;
@@ -15,8 +16,36 @@ MailForm.prototype.init = function (model) {
 
 
 MailForm.prototype.create = function (model) {
-  this.selectize = $('#iTo').selectize({
+  var self = this,
+
+      // Even if recipients change during the user interaction with the page
+      // the selectize doesn't change, so it's ok to use get once
+      recipients  = model.get('recipients');
+
+  this.selectizeTo = $('#iTo').selectize({
+    create: true,
     plugins: ['remove_button']
+  })[0].selectize;
+
+  this.selectizeGroups = $('#iToGroups').selectize({
+    plugins: ['remove_button'],
+    onItemAdd: function (value, $item) {
+      for (var i = 0; i < recipients.length; i++) {
+        if (recipients[i].gid === value) {
+          self.selectizeTo.addItem(recipients[i].email);
+        }
+      }
+    },
+    onItemRemove: function (value) {
+      for (var i = 0; i < recipients.length; i++) {
+        if (recipients[i].gid === value) {
+          self.selectizeTo.removeItem(recipients[i].email);
+        }
+      }
+    },
+    onClear: function () {
+      self.selectizeTo.clear();
+    }
   })[0].selectize;
 };
 
@@ -26,8 +55,8 @@ MailForm.prototype.send = function () {
       email   = {};
 
   email = {
-    from      : this.model.get('emailSender'),
-    to        : self.selectize.items,
+    from      : this.model.get('sender'),
+    to        : self.selectizeTo.items,
     subject   : this.model.get('subject'),
     text      : this.model.get('text'),
   };
@@ -48,15 +77,15 @@ MailForm.prototype.send = function () {
 };
 
 
-MailForm.prototype.clickEmailGroupAll = function () {
+MailForm.prototype.clickToGroupAll = function () {
   var self = this;
 
-  this.model.get('emailRecipients').forEach(function (e) {
-    self.selectize.addItem(e.email);
+  this.model.get('groups').forEach(function (g) {
+    self.selectizeGroups.addItem(g.id);
   });
 };
 
 
-MailForm.prototype.clickEmailGroupNone = function () {
-  this.selectize.clear();
+MailForm.prototype.clickToGroupNone = function () {
+  this.selectizeGroups.clear();
 };

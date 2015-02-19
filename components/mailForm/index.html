@@ -2,73 +2,62 @@
   <div class="mailForm">
     <form class="form-horizontal">
       <div class="form-group">
-        <label for="iFrom" class="col-sm-1 control-label">Mittente</label>
-        <div class="col-sm-11">
-          <p id="iForm">{{@emailSender}}</p>
+        <label for="iFrom" class="col-sm-2 control-label">Mittente</label>
+        <div class="col-sm-10">
+          <p id="iForm">{{@sender}}</p>
         </div>
       </div>
       
       <div class="form-group">
-        <label for="iTo" class="col-sm-1 control-label">Destinatari</label>
-        <div class="col-sm-11">
+        <label for="iTo" class="col-sm-2 control-label">Destinatari</label>
+        <div class="col-sm-10">
           <select id="iTo" multiple>
-            {{each @emailRecipients as #to}}
-              <option value="{{#to.email}}">{{#to.email}}</option>
+            {{each @groups as #tg}}
+              <optgroup label="{{#tg.name}}">
+                {{each @recipients as #to}}
+                  {{if #tg.id === #to.gid}}
+                    <option value="{{#to.email}}">{{#to.email}}</option>
+                  {{/if}}
+                {{/each}}
+              </optgroup>
             {{/each}}
           </select>
         </div>
       </div>
 
-      <!--
       <div class="form-group">
-        <label class="col-sm-1 control-label"></label>
-        <div class="col-sm-11">
-          <div class="btn-group" data-toggle="buttons">
-            {{each @emailGroups as #group}}
-            <label class="btn btn-primary">
-              <input type="checkbox" autocomplete="off" on-click="clickEmailGroup(#group.id)"> {{#group.name}}
-            </label>
-            {{/each}}
+        <label class="col-sm-2 control-label">Gruppi destinatari</label>
+        <div class="col-sm-2">
+          <div class="btn-group" role="group">
+            <buton type="button" class="btn btn-primary" on-click="clickToGroupAll()">Tutti</buton>
+            <buton type="button" class="btn btn-primary" on-click="clickToGroupNone()">Nessuno</buton>
           </div>
         </div>
-      </div>
-      -->
-
-      <div class="form-group">
-        <label class="col-sm-1 control-label"></label>
-        <div class="col-sm-11">
-          <div class="btn-group" role="group">
-            <buton type="button" class="btn btn-primary" on-click="clickEmailGroupAll()">Tutti</buton>
-            <buton type="button" class="btn btn-primary" on-click="clickEmailGroupNone()">Nessuno</buton>
-          </div>
-          <!--
-          <div class="btn-group" data-toggle="buttons">
-            {{each @emailGroups as #group}}
-            <label class="btn btn-primary">
-              <input type="checkbox" autocomplete="off" on-click="clickEmailGroup(#group.id)"> {{#group.name}}
-            </label>
+        <div class="col-sm-8">
+          <select id="iToGroups" multiple>
+            {{each @groups as #tg}}
+              <option value="{{#tg.id}}">{{#tg.name}}</option>
             {{/each}}
-          </div>
-          -->
+          </select>
         </div>
       </div>
       
       <div class="form-group">
-        <label for="iSubject" class="col-sm-1 control-label">Oggetto</label>
-        <div class="col-sm-11">
+        <label for="iSubject" class="col-sm-2 control-label">Oggetto</label>
+        <div class="col-sm-10">
           <input type="text" class="form-control" id="iSubject" value="{{subject}}">
         </div>
       </div>
       
       <div class="form-group">
-        <label for="iEmail" class="col-sm-1 control-label">Email</label>
-        <div class="col-sm-11">
-          <textarea id="iEmail" class="form-control" rows="3">{{text}}</textarea>
+        <label for="iEmail" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+          <textarea id="iEmail" class="form-control" rows="10">{{text}}</textarea>
         </div>
       </div>
       
       <div class="form-group">
-        <div class="col-sm-offset-1 col-sm-11">
+        <div class="col-sm-offset-2 col-sm-10">
           <button type="submit" class="btn btn-primary" on-click="send()">Manda mail</button>
         </div>
       </div>
