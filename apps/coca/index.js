@@ -14,7 +14,7 @@ var appName   = path.basename(__dirname),
     appApiUrl = '/api/v1/' + appName,
     app       = module.exports = derby.createApp(appName, __filename);
 
-var appModules    = require('../../libs/appModules'),
+var appModules    = require('../../libs/routesModules'),
     serverRoutes  = derby.util.serverRequire(module, './server') || {};
 
 if (!derby.util.isProduction) {

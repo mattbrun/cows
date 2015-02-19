@@ -13,7 +13,7 @@ var appName = path.basename(__dirname),
     appUrl  = '/' + appName,
     app     = module.exports = derby.createApp(appName, __filename);
 
-var appModules    = require('../../libs/appModules');
+var appModules    = require('../../libs/routesModules');
 
 if (!derby.util.isProduction) {
   app.use(require('derby-debug'));
