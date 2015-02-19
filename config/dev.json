@@ -4,28 +4,16 @@
     "ip"              : "0.0.0.0",
     "port"            : 3030,
     
-    "cleanInterval"   : 60000
-  },
-
-  "mongo" : {
-    "host"            : "127.0.0.1",
-    "port"            : 27017,
-    "db"              : "cows",
-
-    "username"        : null,
-    "password"        : null,
-
-    "eraseOnStart"    : false
-  },
-  
-  "collections": {
+    "cleanInterval"   : 60000,
+    "eraseDBOnStart"  : false,
+    "useRedis"        : false
   },
 
   "auth" : {
+    "createSu"        : false,
     "suLogin"         : "super@user.net",
     "suPassword"      : "admin14",
-
-    "cookieTimeout"   : 60000
+    "cookieTimeout"   : null
   }
-    
+
 }

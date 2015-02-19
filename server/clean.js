@@ -108,12 +108,10 @@ function cleanDerbyBundle() {
 // #############################################################################
 
 function eraseDbCollections (db, cb) {
-  if (config.app.eraseOnStart) {
+  if (config.app.eraseDBOnStart) {
     db.collectionNames(function (err, names) {
-      if (err) { throw err; }
-      console.log('### names', names);
-
-      if (cb) { cb(); }
+      if (err)  { throw err; }
+      if (cb)   { cb(); }
     });
   } else {
     if (cb) { cb(); }

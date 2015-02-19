@@ -5,29 +5,18 @@
     "port"            : 3030,
     
     "cleanInterval"   : 60000,
-    "eraseOnStart"    : false,
+    "eraseDBOnStart"  : false,
+    "useRedis"        : true,
     
     "wsPort"          : 8000,
     "wsSecurePort"    : 8443
   },
 
-  "mongo" : {
-    "host": "ds031691.mongolab.com",
-    "port": 31691,
-    "db": "openshift_r5e999a6_miea654h",
-    "username": "cows",
-    "password": "swoc"
-
-  },
-
-  "collections": {
-  },
-
   "auth" : {
+    "createSu"        : false,
     "suLogin"         : "super@user.net",
     "suPassword"      : "admin14",
-
-    "cookieTimeout"   : 60000
+    "cookieTimeout"   : 43200000
   }
-    
+
 }

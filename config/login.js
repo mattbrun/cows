@@ -10,7 +10,7 @@ module.exports = {
     id:       true,
     email:    true,
     admin:    true,
-    group:   true                // FIXME: leave it server side only
+    group:    true                // FIXME: leave it server side only
   },
   confirmRegistration: false,
 

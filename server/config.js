@@ -16,10 +16,10 @@ if (process.env.OPENSHIFT_APP_NAME) {
   file = 'openshift';
 }
 
-var cfgPath = path.join(__dirname, '..', 'config')
-  , cfgFile = path.join(cfgPath, file + '.json')
-  , config  = JSON.parse(fs.readFileSync(cfgFile, 'utf-8'))
-  , include = [];
+var cfgPath     = path.join(__dirname, '..', 'config'),
+    cfgFile     = path.join(cfgPath, file + '.json'),
+    cfgPathExt  = path.join(cfgPath, file),
+    config      = JSON.parse(fs.readFileSync(cfgFile, 'utf-8'));
 
 
 
@@ -34,13 +34,17 @@ function toBoolean (s) {
 
 
 //###################################################################
-// Parsing
+// External config
 //###################################################################
 
-config.app.port = parseInt(config.app.port, 10);
-config.app.cleanInterval = parseInt(config.app.cleanInterval, 10);
-config.mongo.port = parseInt(config.mongo.port, 10);
-config.auth.cookieTimeout = parseInt(config.auth.cookieTimeout, 10);
+fs.readdirSync(cfgPathExt).forEach(function(fileName) {
+  if (fileName !== '.'  &&    // Ignore current dir
+      fileName !== '..' &&    // Ignore parent dir
+      fileName[0] !== '_') {  // Internal convention: ignore files starting with _
+    var filePath = path.join(cfgPathExt, fileName);
+    config[fileName.replace('.json', '')] = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  }
+});
 
 
 
@@ -59,7 +63,7 @@ if (file === 'openshift') {
   config.mongo.password = config.mongo.password || process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
 }
 
-config.mongo.eraseOnStart = toBoolean(config.mongo.eraseOnStart);
+config.app.eraseDBOnStart = toBoolean(config.app.eraseDBOnStart);
 config.mongo.url = 'mongodb://';
 if (config.mongo.username && config.mongo.password) {
   config.mongo.url += config.mongo.username + ':';
@@ -70,20 +74,6 @@ config.mongo.url += config.mongo.port + '/';
 config.mongo.url += config.mongo.db;
 
 config.profile = file;
-
-
-
-//###################################################################
-// External config
-//###################################################################
-
-include.forEach(function(fileName) {
-  var filePath = path.join(cfgPath, fileName + '.json');
-
-  if (fs.existsSync(filePath)) {
-    config[fileName] = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-  }
-});
 
 
 

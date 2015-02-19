@@ -90,12 +90,14 @@ module.exports = function(store, apps, error, cb) {
   expressApp.all('*', function (req, res, next) { next('404: ' + req.url); });
   expressApp.use(error);
 
-  derbyLogin.createUser(
-    config.auth.suLogin,
-    config.auth.suPassword,
-    { admin: true, group: '*' },
-    function (err) { if (err) { throw err; } }
-  );
+  if (config.auth.createSu) {
+    derbyLogin.createUser(
+      config.auth.suLogin,
+      config.auth.suPassword,
+      { admin: true, group: '*' },
+      function (err) { if (err) { throw err; } }
+    );
+  }
 
   cb(expressApp, handlers.upgrade);
 };
