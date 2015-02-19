@@ -39,7 +39,6 @@ Useradd.prototype.addUser = function () {
       // TODO: handle error
       throw res;
     } else {
-      //console.log('### res', res);
     }
   });
 };
