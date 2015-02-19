@@ -4,7 +4,7 @@
     "ip"              : "0.0.0.0",
     "port"            : 3030,
     
-    "cleanInterval"   : 60000,
+    "cleanInterval"   : 43200000,
     "eraseDBOnStart"  : false,
     "useRedis"        : true,
     
