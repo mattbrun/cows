@@ -14,7 +14,7 @@ var appName   = path.basename(__dirname),
     appApiUrl = '/api/v1/' + appName,
     app       = module.exports = derby.createApp(appName, __filename);
 
-var appModules    = require('../../libs/appModules'),
+var appModules    = require('../../libs/routesModules'),
     serverRoutes  = derby.util.serverRequire(module, './server') || {};
 
 if (!derby.util.isProduction) {
@@ -46,6 +46,7 @@ app.component(require('./components/groupsList'));
 
 app.module('user', appModules.user);
 app.module('groups', appModules.groups);
+app.module('users', appModules.users);
 
 
 
@@ -70,7 +71,7 @@ app.get(appUrl, function () {
   this.redirect('users');
 });
 
-app.get('users',      appUrl + '/users',    isAdmin,  ['user', 'groups']);
+app.get('users',      appUrl + '/users',    isAdmin,  ['user', 'groups', 'users']);
 app.get('website',    appUrl + '/website',  isAdmin,  ['user']);
 app.get('config',     appUrl + '/config',   isAdmin,  ['user']);
 app.get('stats',      appUrl + '/stats',    isAdmin,  ['user']);

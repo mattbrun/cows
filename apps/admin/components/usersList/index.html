@@ -14,7 +14,7 @@
         </thead>
 
         <tbody>
-          {{each _users as #user}}
+          {{each @users as #user}}
           <tr>
             <td>{{#user.email}}</td>
             <td>{{getGroupName(#user.group)}}</td>
@@ -31,7 +31,7 @@
               </button>
             </td>
           </tr>
-          {{/}}
+          {{/each}}
         </tbody>
       </table>
     </div>
