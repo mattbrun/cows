@@ -13,21 +13,21 @@ module.exports = {
 
   groups: {
     load: function () {
-      this.groupsQuery = this.model.query('groups', {});
-      this.addSubscription(this.groupsQuery);
+      this.groups = this.model.at('groups');
+      this.addSubscription(this.groups);
     },
     setup: function () {
-      this.model.ref('_page.groups', this.groupsQuery);
+      this.model.ref('_page.groups', this.groups.filter(null));
     }
   },
   
   users: {
     load: function () {
-      this.users = this.model.query('users', {});
+      this.users = this.model.at('users');
       this.addSubscription(this.users);
     },
     setup: function () {
-      this.model.ref('_page.users', this.users);
+      this.model.ref('_page.users', this.users.filter(null));
     }
   },
   
@@ -35,6 +35,8 @@ module.exports = {
     load: function () {
       this.usersQuery = this.model.query('users', {});
       this.addSubscription(this.usersQuery);
+      //this.users = this.model.at('users');
+      //this.addSubscription(this.users);
     },
     setup: function () {
       var uq      = this.usersQuery.get(),
