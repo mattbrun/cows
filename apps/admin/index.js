@@ -54,8 +54,8 @@ app.module('users', appModules.users);
 // Middleware
 // #############################################################################
 
-function isAdmin (app, model, uri, cb) {
-  if (app.req.session.user.admin) {
+function isAdmin () {
+  if (this.model.get('_session.admin')) {
     this.next();
   } else {
     // TODO return an error to the user
