@@ -1,5 +1,4 @@
-var superagent  = require('superagent'),
-    _           = require('lodash');
+var superagent  = require('superagent');
 
 function MailForm(){}
 module.exports = MailForm;
@@ -80,7 +79,7 @@ MailForm.prototype.send = function () {
 MailForm.prototype.clickToGroupAll = function () {
   var self = this;
 
-  this.model.get('groups').forEach(function (g) {
+  this.groups.get().forEach(function (g) {
     self.selectizeGroups.addItem(g.id);
   });
 };

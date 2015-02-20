@@ -4,16 +4,15 @@ module.exports = GroupsList;
 GroupsList.prototype.view = __dirname;
 GroupsList.prototype.name = 'groupsList';
 
-GroupsList.prototype.create = function (model) {
-  model.set('_newGroupName', '');
-  model.ref('_groups', model.root.at('_page.groups'));
+GroupsList.prototype.init = function (model) {
+  model.set('newGroupName', '');
 };
 
 GroupsList.prototype.addGroup = function () {
-  var ng = this.model.get('_newGroupName');
+  var ng = this.model.get('newGroupName');
 
   this.model.root.add('groups', {name: ng});
-  this.model.set('_newGroupName', '');
+  this.model.set('newGroupName', '');
 };
 
 GroupsList.prototype.delGroup = function (g) {

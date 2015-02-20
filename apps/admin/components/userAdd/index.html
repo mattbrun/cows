@@ -4,23 +4,23 @@
     
     <form role="form">
       <div class="form-group">
-        <input type="email" class="form-control" placeholder="Email" value="{{_email}}">
+        <input type="email" class="form-control" placeholder="Email" value="{{email}}">
       </div>
       
       <div class="form-group">
-        <input type="password" class="form-control" placeholder="Password" value="{{_password}}">
+        <input type="password" class="form-control" placeholder="Password" value="{{password}}">
       </div>
       
       <div class="form-group">
         <select id="prjsInput" class="form-control">
-          {{each _groups as #group}}
-            <option selected="{{_selectedGroup === #group.name}}">{{#group.name}}</option>
+          {{each @groups as #group}}
+            <option selected="{{selectedGroup === #group.name}}">{{#group.name}}</option>
           {{/each}}
         </select>
       </div>
       
       <div class="checkbox">
-        <label><input type="checkbox" id="admin" checked="{{_admin}}"> Admin?</label>
+        <label><input type="checkbox" id="admin" checked="{{admin}}"> Admin?</label>
       </div>
       
       <button type="submit" class="btn btn-success btn-block" on-click="addUser()">Aggiungi</button>

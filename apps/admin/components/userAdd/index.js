@@ -11,22 +11,21 @@ function toBoolean (b) {
 Useradd.prototype.view = __dirname;
 Useradd.prototype.name = 'userAdd';
 
-Useradd.prototype.create = function (model) {
-  model.set('_email', '');
-  model.set('_password', '');
-  model.set('_admin', '');
-  model.ref('_groups', model.root.at('_page.groups'));
+Useradd.prototype.init = function (model) {
+  model.set('email', '');
+  model.set('password', '');
+  model.set('admin', false);
 };
 
 Useradd.prototype.addUser = function () {
-  var staff   = this.model.get('_groups'),
-      i       = _.findIndex(staff, {name: this.model.get('_selectedGroup')}),
-      isAdmin = toBoolean(this.model.get('_admin'));
+  var staff   = this.model.get('groups'),
+      i       = _.findIndex(staff, {name: this.model.get('selectedGroup')}),
+      isAdmin = toBoolean(this.model.get('admin'));
 
   if (i < 0) { i = 0; }
   var user = {
-    email: this.model.get('_email'),
-    password: this.model.get('_password'),
+    email: this.model.get('email'),
+    password: this.model.get('password'),
     data: {
       group: staff[i].id,
       admin: isAdmin
