@@ -4,6 +4,9 @@ module.exports = function(grunt) {
 
     copy: {
       bundle: {
+        options: {
+          rebase: false
+        },
         files: [{
           expand: true,
           cwd: 'bower_components/bootstrap/dist/fonts/',
