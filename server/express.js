@@ -80,11 +80,7 @@ module.exports = function(store, apps, error, cb) {
       if (err) { throw err; }
       req.session.user = userModel.get();
       if (req.session.user) {
-        if (req.session.user.admin) {
-          model.set('_session.admin', true);
-        } else {
-          model.set('_session.admin', false);
-        }
+        model.set('_session.admin', (req.session.user.admin ? true : false));
       }
       next();
     });
