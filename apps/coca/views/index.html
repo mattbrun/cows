@@ -2,6 +2,7 @@
 <import: src="./calendar">
 <import: src="./places">
 <import: src="./market">
+<import: src="./account">
 
 <Title:>
   {{_page.title}}
@@ -22,6 +23,7 @@
   <div id="wrapper" class="content">
     <view is="sideBar">
       <view is="sideBar:navLink" url="{{pathFor('mail')}}">Mail</view>
+      <view is="sideBar:navLink" url="{{pathFor('account')}}">Account</view>
       <!--
       <view is="sideBar:navLink" url="{{pathFor('calendar')}}">Calendario</view>
       <view is="sideBar:navLink" url="{{pathFor('places')}}">Case</view>

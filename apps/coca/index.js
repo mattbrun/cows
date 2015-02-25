@@ -33,6 +33,7 @@ app.component(require('../../components/topBar'));
 app.component(require('../../components/sideBar'));
 app.component(require('../../components/footer'));
 app.component(require('../../components/mailForm'));
+app.use(require('derby-login/components'));
 
 
 
@@ -59,6 +60,8 @@ app.get('calendar',   appUrl + '/calendar', ['user']);
 app.get('places',     appUrl + '/places',   ['user']);
 app.get('market',     appUrl + '/market',   ['user']);
 
+
+app.get('account',    appUrl + '/account',  ['user']);
 
 
 // #############################################################################
