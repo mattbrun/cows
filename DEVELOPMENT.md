@@ -64,7 +64,7 @@ $ cd node_modules
 $ git clone https://github.com/mattbrun/derby-login.git
 $ cd derby-login
 $ git remote add upstream https://github.com/derbyparty/derby-login.git
-$ [git remote -v]
+$ git remote -v
 $ git fetch upstream
 $ git checkout master
 $ git merge upstream/master
