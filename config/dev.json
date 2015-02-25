@@ -6,7 +6,7 @@
     
     "cleanInterval"   : 60000,
     "eraseDBOnStart"  : false,
-    "useRedis"        : false
+    "useRedis"        : true
   },
 
   "auth" : {
