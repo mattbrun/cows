@@ -4,8 +4,9 @@
 
 # CRITICAL
 
+- [admin]
+  - users list: add editable options
 - [user] Profile page
-  - change password
   - personal info
 - [home] Home page
   - Calendar
