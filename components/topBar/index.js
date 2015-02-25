@@ -20,6 +20,7 @@ TopBar.prototype.toggleSideBar = function () {
 
 TopBar.prototype.reconnect = function() {
   var model = this.model;
+
   // Hide the reconnect link for a second after clicking it
   model.set('hideReconnect', true);
   setTimeout(function() {
