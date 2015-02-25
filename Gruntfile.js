@@ -64,7 +64,7 @@ module.exports = function(grunt) {
             'staticSite/js/cbpAnimatedHeader.js',
             'staticSite/js/contact_me.js',
             'staticSite/js/agency.js'
-          ],
+          ]
         }
       },
       dev: {
