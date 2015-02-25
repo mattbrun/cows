@@ -4,10 +4,6 @@ var superagent  = require('superagent'),
 function Useradd(){}
 module.exports = Useradd;
 
-function toBoolean (b) {
-  return (b || (b !== '') || (b === 'true'));
-}
-
 Useradd.prototype.view = __dirname;
 Useradd.prototype.name = 'userAdd';
 
@@ -20,8 +16,8 @@ Useradd.prototype.init = function (model) {
 Useradd.prototype.addUser = function () {
   var staff   = this.model.get('groups'),
       i       = _.findIndex(staff, {name: this.model.get('selectedGroup')}),
-      isAdmin = toBoolean(this.model.get('admin'));
-
+      isAdmin = this.model.get('admin');
+  
   if (i < 0) { i = 0; }
   var user = {
     email: this.model.get('email'),
