@@ -4,9 +4,9 @@
 
 # CRITICAL
 
-- [coca] Mail
-  - Make recipients multiselect
-  - Populate recipients multiselect from users projection
+- [user] Profile page
+  - change password
+  - personal info
 - [home] Home page
   - Calendar
   - Contacts
