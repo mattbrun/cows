@@ -25,7 +25,7 @@
     "derby-debug": "*",
     "derby-hook": "*",
     "derby-jade": "*",
-    "derby-login": "git://github.com/mattbrun/derby-login.git#missing-creds",
+    "derby-login": "git://github.com/mattbrun/derby-login.git",
     "derby-router": "*",
     "derby-stylus": "*",
     "express": "*",
