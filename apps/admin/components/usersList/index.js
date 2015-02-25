@@ -6,7 +6,6 @@ module.exports = UsersList;
 UsersList.prototype.view = __dirname;
 UsersList.prototype.name = 'usersList';
 
-
 UsersList.prototype.getGroupName = function (gid) {
   var result = '';
 
@@ -23,7 +22,7 @@ UsersList.prototype.getGroupName = function (gid) {
   return result;
 };
 
-
 UsersList.prototype.delUser = function (uid) {
   this.model.root.del('users.' + uid);
 };
+

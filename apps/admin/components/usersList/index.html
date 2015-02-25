@@ -19,11 +19,7 @@
             <td>{{#user.email}}</td>
             <td>{{getGroupName(#user.group)}}</td>
             <td>
-              {{if #user.admin}}
-                <span class="glyphicon glyphicon-ok"></span>
-              {{else}}
-                <span class="glyphicon glyphicon-cancel"></span>
-              {{/}}
+              <input type="checkbox" checked="{{#user.admin}}">
             </td>
             <td>
               <button class="btn btn-danger" on-click="delUser(#user.id)">
