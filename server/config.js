@@ -24,16 +24,6 @@ var cfgPath     = path.join(__dirname, '..', 'config'),
 
 
 //###################################################################
-// Functions
-//###################################################################
-
-function toBoolean (s) {
-  return s === "true";
-}
-
-
-
-//###################################################################
 // External config
 //###################################################################
 
@@ -63,7 +53,6 @@ if (file === 'openshift') {
   config.mongo.password = config.mongo.password || process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
 }
 
-config.app.eraseDBOnStart = toBoolean(config.app.eraseDBOnStart);
 config.mongo.url = 'mongodb://';
 if (config.mongo.username && config.mongo.password) {
   config.mongo.url += config.mongo.username + ':';

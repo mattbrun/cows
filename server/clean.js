@@ -109,10 +109,13 @@ function cleanDerbyBundle() {
 
 function eraseDbCollections (db, cb) {
   if (config.app.eraseDBOnStart) {
-    db.collectionNames(function (err, names) {
-      if (err)  { throw err; }
-      if (cb)   { cb(); }
+    // TODO make it async
+    /*
+    db.dropDatabase(function (err) {
+      if (err) { throw err; }
+      if (cb) { cb(); }
     });
+    */
   } else {
     if (cb) { cb(); }
   }
