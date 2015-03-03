@@ -17,7 +17,7 @@ module.exports = {
       this.addSubscription(this.groups);
     },
     setup: function () {
-      this.model.ref('_page.groups', this.groups.filter(null));
+      this.model.ref('_page.groups', this.groups);
     }
   },
   
@@ -27,7 +27,7 @@ module.exports = {
       this.addSubscription(this.users);
     },
     setup: function () {
-      this.model.ref('_page.users', this.users.filter(null));
+      this.model.ref('_page.users', this.users);
     }
   },
   

@@ -4,6 +4,10 @@
     
     <form role="form">
       <div class="form-group">
+        <input type="text" class="form-control" placeholder="Soprannome" value="{{nickName}}">
+      </div>
+
+      <div class="form-group">
         <input type="email" class="form-control" placeholder="Email" value="{{email}}">
       </div>
       
@@ -13,7 +17,7 @@
       
       <div class="form-group">
         <select id="prjsInput" class="form-control">
-          {{each @groups as #group}}
+          {{each _groups as #group}}
             <option selected="{{selectedGroup === #group.name}}">{{#group.name}}</option>
           {{/each}}
         </select>

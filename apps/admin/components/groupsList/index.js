@@ -5,7 +5,8 @@ GroupsList.prototype.view = __dirname;
 GroupsList.prototype.name = 'groupsList';
 
 GroupsList.prototype.init = function (model) {
-  model.set('newGroupName', '');
+  model.setNull('newGroupName', '');
+  model.ref('_groups', model.scope('groups').filter(null));
 };
 
 GroupsList.prototype.addGroup = function () {

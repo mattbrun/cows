@@ -6,6 +6,11 @@ module.exports = UsersList;
 UsersList.prototype.view = __dirname;
 UsersList.prototype.name = 'usersList';
 
+UsersList.prototype.init = function (model) {
+  model.ref('_users', model.scope('users').filter(null));
+  model.ref('_groups', model.scope('groups').filter(null));
+};
+
 UsersList.prototype.getGroupName = function (gid) {
   var result = '';
 
@@ -13,7 +18,7 @@ UsersList.prototype.getGroupName = function (gid) {
     if (gid === '*') {
       result = gid;
     } else {
-      var groups  = this.model.get('groups'),
+      var groups  = this.model.get('_groups'),
           i       = _.findIndex(groups, {id: gid});
       if (i >= 0) { result = groups[i].name; }
     }

@@ -11,6 +11,8 @@ MailForm.prototype.name = 'mailForm';
 MailForm.prototype.init = function (model) {
   model.setNull('subject', '');
   model.setNull('text', '');
+
+  model.ref('_groups', model.scope('groups').filter(null));
 };
 
 
@@ -26,6 +28,8 @@ MailForm.prototype.create = function (model) {
     plugins: ['remove_button']
   })[0].selectize;
 
+  // TODO: use https://github.com/d-sko/selectize-item-color
+  // to color tags based on the group color
   this.selectizeGroups = $('#iToGroups').selectize({
     plugins: ['remove_button'],
     onItemAdd: function (value, $item) {
