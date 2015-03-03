@@ -42,7 +42,13 @@
           {{/if}}
 
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{#root._page.user.email}} <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              {{if #root._page.user.nickName}}
+                {{#root._page.user.nickName}} <span class="caret"></span>
+              {{else}}
+                {{#root._page.user.email}} <span class="caret"></span>
+              {{/if}}
+            </a>
             <ul class="dropdown-menu" role="menu">
               <view is="navLink" url="/coca/account"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Acount</view>
               <view is="navLink" url="/auth/logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</view>
