@@ -28,6 +28,6 @@ UsersList.prototype.getGroupName = function (gid) {
 };
 
 UsersList.prototype.delUser = function (uid) {
-  this.model.root.del('users.' + uid);
+  this.model.del('users.' + uid);
 };
 

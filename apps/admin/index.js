@@ -34,9 +34,9 @@ app.component(require('../../components/topBar'));
 app.component(require('../../components/sideBar'));
 app.component(require('../../components/footer'));
 
-app.component(require('./components/userAdd'));
-app.component(require('./components/usersList'));
-app.component(require('./components/groupsList'));
+app.component(require('../../components/userAdd'));
+app.component(require('../../components/usersList'));
+app.component(require('../../components/groupsList'));
 
 
 

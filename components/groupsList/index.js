@@ -12,10 +12,10 @@ GroupsList.prototype.init = function (model) {
 GroupsList.prototype.addGroup = function () {
   var ng = this.model.get('newGroupName');
 
-  this.model.root.add('groups', {name: ng});
+  this.model.add('groups', {name: ng});
   this.model.set('newGroupName', '');
 };
 
 GroupsList.prototype.delGroup = function (g) {
-  this.model.root.del('groups.' + g.id);
+  this.model.del('groups.' + g.id);
 };
