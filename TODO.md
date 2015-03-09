@@ -4,10 +4,8 @@
 
 # CRITICAL
 
-- [admin]
-  - users list: add editable options
 - [user] Profile page
-  - personal info
+  - personal info (editable)
 - [home] Home page
   - Calendar
   - Contacts
@@ -16,6 +14,7 @@
   - P.E.
 - [coca] Calendar
 - [staff] Registry
+- [admin] add role to users
 
   
 # IMPORTANT
@@ -30,9 +29,12 @@
 
 # HIGH Priority
 
+- [admin]
+  - users list: add editable options
 - [login] Use strategies for passport
 - [login] Link account by strategy to internal account
 - [coca] Places
+- [mailForm] Color recipients tags based on groups color
 
 
 # MEDIUM Priority
