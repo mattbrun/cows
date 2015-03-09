@@ -59,7 +59,7 @@ MailForm.prototype.send = function () {
 
   email = {
     from      : this.model.get('sender'),
-    bcc       : self.selectizeTo.items,
+    to        : self.selectizeTo.items,
     subject   : this.model.get('subject'),
     text      : this.model.get('text'),
   };
