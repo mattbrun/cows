@@ -83,7 +83,7 @@ MailForm.prototype.send = function () {
 MailForm.prototype.clickToGroupAll = function () {
   var self = this;
 
-  this.groups.get().forEach(function (g) {
+  this.model.get('_groups').forEach(function (g) {
     self.selectizeGroups.addItem(g.id);
   });
 };
