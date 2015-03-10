@@ -60,7 +60,7 @@ MailForm.prototype.send = function () {
   email = {
     from      : this.model.get('sender'),
     to        : self.selectizeTo.items,
-    subject   : this.model.get('subject'),
+    subject   : '[CoCa] ' + this.model.get('subject'),
     text      : this.model.get('text'),
   };
 
