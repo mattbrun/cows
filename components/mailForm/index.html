@@ -12,15 +12,9 @@
         <label for="iTo" class="col-sm-2 control-label">Destinatari</label>
         <div class="col-sm-10">
           <select id="iTo" multiple>
-            <!--{{each _groups as #tg}}
-              <optgroup label="{{#tg.name}}">-->
-                {{each @recipients as #to}}
-                  <!--{{if #tg.id === #to.gid}}-->
-                    <option value="{{#to.email}}">{{#to.email}}</option>
-                  <!--{{/if}}-->
-                {{/each}}
-              <!--</optgroup>
-            {{/each}}-->
+            {{each @recipients as #to}}
+              <option value="{{#to.email}}">{{#to.email}}</option>
+            {{/each}}
           </select>
         </div>
       </div>
