@@ -79,9 +79,8 @@ module.exports = function(store, apps, error, cb) {
     userModel.fetch(function (err) {
       if (err) { throw err; }
       req.session.user = userModel.get();
-      if (req.session.user) {
-        model.set('_session.admin', (req.session.user.admin ? true : false));
-      }
+      model.set('_session.admin',
+                (req.session.user && req.session.user.admin ? true : false));
       next();
     });
   });
