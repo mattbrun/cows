@@ -4,7 +4,7 @@ module.exports = {
     load: function () {
       var userId = this.model.get('_session.userId');
       this.user = this.model.at('users.' + userId);
-      this.addSubscription(this.user);
+      this.addSubscriptions(this.user);
     },
     setup: function () {
       this.model.ref('_page.user', this.user);
@@ -14,7 +14,7 @@ module.exports = {
   groups: {
     load: function () {
       this.groups = this.model.at('groups');
-      this.addSubscription(this.groups);
+      this.addSubscriptions(this.groups);
     },
     setup: function () {
       this.model.ref('_page.groups', this.groups);
@@ -24,7 +24,7 @@ module.exports = {
   users: {
     load: function () {
       this.users = this.model.at('users');
-      this.addSubscription(this.users);
+      this.addSubscriptions(this.users);
     },
     setup: function () {
       this.model.ref('_page.users', this.users);
@@ -34,9 +34,9 @@ module.exports = {
   usersEmail: {
     load: function () {
       this.usersQuery = this.model.query('users', {});
-      this.addSubscription(this.usersQuery);
+      this.addSubscriptions(this.usersQuery);
       //this.users = this.model.at('users');
-      //this.addSubscription(this.users);
+      //this.addSubscriptions(this.users);
     },
     setup: function () {
       var uq      = this.usersQuery.get(),
