@@ -33,10 +33,11 @@ Useradd.prototype.addUser = function () {
   
   var postPath = this.app.pathFor('userAdd');
   superagent.post(postPath).send(user).end(function (res) {
-    if (!res.ok) {
+    if (res && !res.ok) {
       // TODO: handle error
       throw res;
     } else {
+      // TODO notify user created succesfully
     }
   });
 };
