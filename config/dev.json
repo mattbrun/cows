@@ -10,7 +10,7 @@
   },
 
   "auth" : {
-    "createSu"        : false,
+    "createSu"        : true,
     "suLogin"         : "super@user.net",
     "suPassword"      : "admin14",
     "cookieTimeout"   : null

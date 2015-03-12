@@ -17,9 +17,15 @@
         <tbody>
           {{each _users as #user}}
           <tr>
-            <td>{{#user.nickName}}</td>
-            <td>{{#user.email}}</td>
-            <td>{{getGroupName(#user.group)}}</td>
+            <td> <input type="text" class="form-control" value="{{#user.nickName}}"> </td>
+            <td> <input type="email" class="form-control" value="{{#user.email}}"> </td>
+            <td>
+              <select id="prjsInput" class="form-control">
+                {{each _groups as #group}}
+                <option selected="{{#user.group === #group.id}}">{{#group.name}}</option>
+                {{/each}}
+              </select>
+            </td>
             <td>
               <input type="checkbox" checked="{{#user.admin}}">
             </td>
