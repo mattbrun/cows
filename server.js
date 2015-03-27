@@ -61,7 +61,7 @@ derby.run(function() {
     server.on('upgrade', upgrade);
 
     async.each(apps, function(app, cb) {
-      app.writeScripts(derbyStore, publicDir, { extensions: ['.coffee'] }, function() {
+      app.writeScripts(derbyStore, publicDir, { extensions: ['.coffee'], disableScriptMap: derby.util.isProduction }, function() {
         console.log('Bundle created:', chalk.yellow(app.name));
         cb();
       });
